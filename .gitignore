@@ -4,4 +4,7 @@
 
 # generated files
 .packages
+.pub
+packages*
 pubspec.lock
+web/packages*
