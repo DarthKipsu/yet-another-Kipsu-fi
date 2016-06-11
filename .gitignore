@@ -5,6 +5,7 @@
 # generated files
 .packages
 .pub
+build*
 packages*
 pubspec.lock
 web/packages*
