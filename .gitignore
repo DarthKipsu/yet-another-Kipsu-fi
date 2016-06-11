@@ -1,3 +1,7 @@
 *~
 *.swo
 *.swp
+
+# generated files
+.packages
+pubspec.lock
