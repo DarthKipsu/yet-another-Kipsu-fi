@@ -2,5 +2,5 @@ import 'package:angular2/core.dart';
 
 @Component(
     selector: 'app',
-    template: '<h1>My First Angular 2 App</h1>')
+    templateUrl: 'app_component.html')
 class AppComponent {}
