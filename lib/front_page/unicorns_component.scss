@@ -10,6 +10,10 @@ $horse-edge-color: #eef0ce;
 svg {
   width: 100%;
 
+  .adultHorn {
+    fill: $horse-edge-color;
+  }
+
   .foalBody,
   .foalLine {
     fill: $foal-background-color;
@@ -19,6 +23,10 @@ svg {
 
   .foalHair {
     fill-opacity: 0.8;
+  }
+
+  .foalHorn {
+    fill: $foal-edge-color;
   }
   
   .horseBody,
