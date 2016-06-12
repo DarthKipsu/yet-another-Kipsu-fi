@@ -10,12 +10,10 @@ import 'package:kipsu_fi/services/title_service.dart';
 class AboutComponent implements OnActivate {
   final TitleService _titleService;
 
-  AboutComponent(this._titleService) {
-    print('created!');
-  }
+  AboutComponent(this._titleService);
 
   routerOnActivate(next, prev) {
-    _titleService.setTitle("fff");
+    _titleService.title = "About Me";
   }
 }
 

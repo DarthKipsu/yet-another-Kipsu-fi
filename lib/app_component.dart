@@ -21,15 +21,11 @@ import 'package:kipsu_fi/services/title_service.dart';
     const Route(path: '/about', name: 'About', component: AboutComponent)
 ])
 
-class AppComponent implements OnInit {
-  final TitleService titleService;
-  String title;
+class AppComponent {
+  final TitleService _titleService;
+  String get title => _titleService.title;
 
-  AppComponent(this.titleService);
-  
-  ngOnInit() {
-    titleService.addChangeListener((String newTitle) { print('jotain'); title = newTitle; });
-  }
+  AppComponent(this._titleService);
 
 }
 
