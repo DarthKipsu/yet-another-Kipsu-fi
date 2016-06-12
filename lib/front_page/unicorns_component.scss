@@ -1,3 +1,30 @@
+$foal-background-color: #f5fdff;
+$foal-edge-color: #e1eff2;
+$horse-background-color: #feffed;
+$horse-edge-color: #eef0ce;
+
+@mixin rainbow-fill($rotation) {
+  fill: linear-gradient($rotation, red, orange, yellow, green, blue, indigo, violet);
+}
+
 svg {
   width: 100%;
+
+  .foalBody,
+  .foalLine {
+    fill: $foal-background-color;
+    stroke: $foal-edge-color;
+    stroke-width: 3px;
+  }
+
+  .foalHair {
+    fill-opacity: 0.8;
+  }
+  
+  .horseBody,
+  .adultLine {
+    fill: $horse-background-color;
+    stroke: $horse-edge-color;
+    stroke-width: 4px;
+  }
 }
