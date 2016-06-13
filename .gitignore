@@ -6,6 +6,7 @@
 .packages
 .pub
 build*
+lib/assets
 packages*
 pubspec.lock
 web/packages*
