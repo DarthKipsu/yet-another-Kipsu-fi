@@ -14,6 +14,7 @@ class AboutComponent implements OnActivate {
 
   routerOnActivate(next, prev) {
     _titleService.title = "About Me";
+    _titleService.subtitle = "Find out more about who I am.";
   }
 }
 

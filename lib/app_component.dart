@@ -12,11 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
     selector: 'app',
     templateUrl: 'app_component.html',
     styleUrls: const ['app_component.css'],
-    directives: const [
-      ROUTER_DIRECTIVES,
-      AboutComponent,
-      UnicornsComponent
-    ],
+    directives: const [ROUTER_DIRECTIVES],
     providers: const [ROUTER_PROVIDERS, TitleService])
 
 @RouteConfig(const [
@@ -30,6 +26,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 class AppComponent {
   final TitleService _titleService;
   String get title => _titleService.title;
+  String get subtitle => _titleService.subtitle;
 
   AppComponent(this._titleService);
 

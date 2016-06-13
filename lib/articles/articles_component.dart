@@ -14,6 +14,7 @@ class ArticlesComponent implements OnActivate {
 
   routerOnActivate(next, prev) {
     _titleService.title = "Articles";
+    _titleService.subtitle = "About computer science, life and everything.";
   }
 }
 

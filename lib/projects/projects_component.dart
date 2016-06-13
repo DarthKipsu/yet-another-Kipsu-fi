@@ -14,6 +14,7 @@ class ProjectsComponent implements OnActivate {
 
   routerOnActivate(next, prev) {
     _titleService.title = "Projects";
+    _titleService.subtitle = "The best way to learn a new language or a concept.";
   }
 }
 
