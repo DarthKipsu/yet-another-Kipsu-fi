@@ -14,5 +14,6 @@ class UnicornsComponent implements OnActivate {
 
   routerOnActivate(next, prev) {
     _titleService.title = "darth.kipsu.fi";
+    _titleService.subtitle = 'Presenting you with my reality.';
   }
 }
