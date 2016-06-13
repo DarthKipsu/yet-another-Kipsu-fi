@@ -1,4 +1,6 @@
 $border-color: #eee;
+$social-media-fill-color: #828282;
+$social-media-hover-color: violet;
 
 .nav {
   border-bottom: 1px solid $border-color;
@@ -21,6 +23,12 @@ $border-color: #eee;
     height: 16px;
     margin: 0 2px;
     width: 16px;
+
+    fill: $social-media-fill-color;
+
+    &:hover {
+      fill: $social-media-hover-color;
+    }
   }
 }
 
