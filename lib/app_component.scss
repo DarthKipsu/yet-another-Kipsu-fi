@@ -49,3 +49,18 @@ $text-highlight-color: #844b99;
   }
 }
 
+:host /deep/ .content {
+  margin: 16px 0 20px;
+
+  hr {
+    color: $border-color;
+    height: 1px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 28px;
+    padding: 5px 0;
+  }
+}
+

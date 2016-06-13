@@ -1,0 +1,20 @@
+.photo-large {
+  
+  img {
+    width: 100%;
+  }
+}
+
+table {
+  font-size: 18px;
+
+  td {
+    padding: 8px;
+  }
+
+  td:first-child {
+    font-weight: 600;
+    width: 130px;
+  }
+}
+
