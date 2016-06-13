@@ -1,6 +1,7 @@
 $border-color: #eee;
 $social-media-fill-color: #828282;
-$social-media-hover-color: violet;
+$link-hover-color: violet;
+$text-highlight-color: #844b99;
 
 .nav {
   border-bottom: 1px solid $border-color;
@@ -9,6 +10,11 @@ $social-media-hover-color: violet;
 
   a {
     text-decoration: none;
+    color: $text-highlight-color;
+
+    &:hover {
+      color: $link-hover-color;
+    }
   }
 }
 
@@ -26,7 +32,7 @@ $social-media-hover-color: violet;
     width: 16px;
 
     &:hover {
-      fill: $social-media-hover-color;
+      fill: $link-hover-color;
     }
   }
 }
@@ -34,6 +40,7 @@ $social-media-hover-color: violet;
 .title {
   h1 {
     margin: 16px 0 0;
+    color: $text-highlight-color;
   }
 
   hr {
