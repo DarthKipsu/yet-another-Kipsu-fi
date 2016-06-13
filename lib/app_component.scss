@@ -20,15 +20,25 @@ $social-media-hover-color: violet;
   }
 
   svg {
+    fill: $social-media-fill-color;
     height: 16px;
     margin: 0 2px;
     width: 16px;
 
-    fill: $social-media-fill-color;
-
     &:hover {
       fill: $social-media-hover-color;
     }
+  }
+}
+
+.title {
+  h1 {
+    margin: 16px 0 0;
+  }
+
+  hr {
+    color: $border-color;
+    height: 1px;
   }
 }
 
