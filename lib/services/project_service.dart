@@ -8,11 +8,17 @@ class ProjectService {
     new Project(
         'Joku otsikko',
         'Joku subtitle',
-        'joku.html'),
+        'joku.html',
+        'joku'),
     new Project(
         'Toinen otsikko',
         'Toinen väliotsikko',
-        'toinen.html')
+        'toinen.html',
+        'joku')
   ];
+
+  getProject(String id) {
+    return registered_projects[0];
+  }
 }
 

@@ -9,11 +9,13 @@ import 'package:kipsu_fi/services/title_service.dart';
     selector: 'projects',
     templateUrl: 'project_list_component.html',
     styleUrls: const ['project_list_component.css'])
+
 class ProjectListComponent implements OnActivate {
   final TitleService _titleService;
   final ProjectService _projectService;
+  final Router _router;
 
-  ProjectListComponent(this._titleService, this._projectService);
+  ProjectListComponent(this._titleService, this._projectService, this._router);
 
   routerOnActivate(next, prev) {
     _titleService.title = "Projects";
@@ -22,5 +24,10 @@ class ProjectListComponent implements OnActivate {
 
   List<Project> get projects => _projectService.registered_projects;
 
+  goTo(Project project) {
+    _router.navigate(['Project', {'project': project.id}]);
+    _titleService.title = project.title;
+    _titleService.subtitle = project.subtitle;
+  }
 }
 

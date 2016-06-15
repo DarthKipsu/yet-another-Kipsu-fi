@@ -1,6 +1,6 @@
 <div>projects:</div>
 <ul>
-  <li *ngFor="let project of projects">
+  <li *ngFor="let project of projects" (click)="goTo(project)">
     {{project.title}}
   </li>
 </ul>
