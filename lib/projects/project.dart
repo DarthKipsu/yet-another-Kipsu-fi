@@ -5,3 +5,4 @@ class Project {
 
   Project(this.title, this.subtitle, this.templateUrl);
 }
+

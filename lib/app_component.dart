@@ -30,6 +30,5 @@ class AppComponent {
   String get subtitle => _titleService.subtitle;
 
   AppComponent(this._titleService);
-
 }
 
