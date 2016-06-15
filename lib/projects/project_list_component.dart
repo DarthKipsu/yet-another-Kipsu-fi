@@ -2,6 +2,7 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:kipsu_fi/projects/project.dart';
+import 'package:kipsu_fi/services/project_service.dart';
 import 'package:kipsu_fi/services/title_service.dart';
 
 @Component(
@@ -10,25 +11,16 @@ import 'package:kipsu_fi/services/title_service.dart';
     styleUrls: const ['project_list_component.css'])
 class ProjectListComponent implements OnActivate {
   final TitleService _titleService;
-  final List<Project> projects = _registered_projects;
+  final ProjectService _projectService;
 
-  ProjectListComponent(this._titleService);
+  ProjectListComponent(this._titleService, this._projectService);
 
   routerOnActivate(next, prev) {
     _titleService.title = "Projects";
     _titleService.subtitle = "The best way to learn a new language or a concept.";
   }
 
-}
+  List<Project> get projects => _projectService.registered_projects;
 
-final List<Project> _registered_projects = [
-  new Project(
-      'Joku otsikko',
-      'Joku subtitle',
-      'joku.html'),
-  new Project(
-      'Toinen otsikko',
-      'Toinen väliotsikko',
-      'toinen.html')
-];
+}
 
