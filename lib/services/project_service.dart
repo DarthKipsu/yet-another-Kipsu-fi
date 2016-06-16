@@ -8,14 +8,14 @@ import 'package:kipsu_fi/projects/components/toinen_component.dart';
 class ProjectService {
   final Map<String, Project> registered_projects = {
     'joku': new Project(
+        'joku',
         'Joku otsikko',
         'Joku subtitle',
-        'joku',
         JokuComponent),
     'toinen': new Project(
+        'toinen',
         'Toinen otsikko',
         'Toinen väliotsikko',
-        'toinen',
         ToinenComponent)
   };
 

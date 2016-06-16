@@ -1,9 +1,9 @@
 class Project {
+  final String id;
   final String title;
   final String subtitle;
-  final String id;
   final Type component;
 
-  Project(this.title, this.subtitle, this.id, this.component);
+  Project(this.id, this.title, this.subtitle, this.component);
 }
 

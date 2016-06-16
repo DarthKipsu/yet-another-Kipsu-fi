@@ -1,7 +1,7 @@
-<div>projects:</div>
 <ul>
   <li *ngFor="let project of projects" (click)="goTo(project)">
-    {{project.title}}
+    <div class="title">{{project.title}}</div>
+    <div class="subtitle">{{project.subtitle}}</div>
   </li>
 </ul>
 
