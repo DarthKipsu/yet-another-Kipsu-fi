@@ -1,24 +1,24 @@
 import 'package:angular2/core.dart';
 
 import 'package:kipsu_fi/projects/project.dart';
+import 'package:kipsu_fi/projects/components/joku_component.dart';
+import 'package:kipsu_fi/projects/components/toinen_component.dart';
 
 @Injectable()
 class ProjectService {
-  final List<Project> registered_projects = [
-    new Project(
+  final Map<String, Project> registered_projects = {
+    'joku': new Project(
         'Joku otsikko',
         'Joku subtitle',
-        'joku.html',
-        'joku'),
-    new Project(
+        'joku',
+        JokuComponent),
+    'toinen': new Project(
         'Toinen otsikko',
         'Toinen väliotsikko',
-        'toinen.html',
-        'joku')
-  ];
+        'toinen',
+        ToinenComponent)
+  };
 
-  getProject(String id) {
-    return registered_projects[0];
-  }
+  Project getProject(String id) => registered_projects[id];
 }
 

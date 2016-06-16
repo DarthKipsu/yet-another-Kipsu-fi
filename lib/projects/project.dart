@@ -1,9 +1,9 @@
 class Project {
   final String title;
   final String subtitle;
-  final String templateUrl;
   final String id;
+  final Type component;
 
-  Project(this.title, this.subtitle, this.templateUrl, this.id);
+  Project(this.title, this.subtitle, this.id, this.component);
 }
 

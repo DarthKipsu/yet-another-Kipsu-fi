@@ -22,7 +22,7 @@ class ProjectListComponent implements OnActivate {
     _titleService.subtitle = "The best way to learn a new language or a concept.";
   }
 
-  List<Project> get projects => _projectService.registered_projects;
+  List<Project> get projects => _projectService.registered_projects.values;
 
   goTo(Project project) {
     _router.navigate(['Project', {'project': project.id}]);

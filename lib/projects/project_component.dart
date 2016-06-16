@@ -6,19 +6,20 @@ import 'package:kipsu_fi/services/project_service.dart';
 
 @Component(
     selector: 'project',
-    templateUrl: 'project_component.html',
-    styleUrls: const ['project_component.css'],
-    inputs: const ['project'])
+    template: '',
+    styleUrls: const ['project_component.css'])
 class ProjectComponent implements OnInit {
-  Project project;
-
   final RouteParams _routeParams;
   final ProjectService _projectService;
+  final ComponentResolver _componentResolver;
+  final ViewContainerRef _vcRef;
 
-  ProjectComponent(this._routeParams, this._projectService);
+  ProjectComponent(this._routeParams, this._projectService, this._componentResolver, this._vcRef);
 
   ngOnInit() {
-    project = _projectService.getProject(_routeParams.get('project'));
+    final project = _projectService.getProject(_routeParams.get('project'));
+    _componentResolver.resolveComponent(project.component)
+        .then((factory) => _vcRef.createComponent(factory));
   }
 }
 
