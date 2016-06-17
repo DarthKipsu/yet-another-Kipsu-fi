@@ -1,0 +1,9 @@
+<div class="metadata">
+  {{date}} 
+  <span *ngIf="githubLink != null"> • <a href="{{githubLink}}">Github</a></span>
+  <span *ngIf="languages.isNotEmpty"> •
+    <span *ngFor="let lang of languages"> 
+      {{lang}}<span *ngIf="languages.last != lang">,</span>
+    </span>
+  </span>
+</div>

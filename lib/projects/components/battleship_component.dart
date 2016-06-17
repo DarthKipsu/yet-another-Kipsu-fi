@@ -8,17 +8,17 @@ import 'package:kipsu_fi/services/project_service.dart';
 import 'package:kipsu_fi/services/title_service.dart';
 
 @Component(
-    selector: 'game-of-love',
-    templateUrl: 'game_of_love_component.html',
+    selector: 'battleship',
+    templateUrl: 'battleship_component.html',
     directives: const [ProjectMetadataComponent])
-class GameOfLoveComponent implements OnInit {
+class BattleshipComponent implements OnInit {
   final TitleService _titleService;
   final RouteParams _routeParams;
   final ProjectService _projectService;
 
   Project project;
 
-  GameOfLoveComponent(this._titleService, this._routeParams, this._projectService);
+  BattleshipComponent(this._titleService, this._routeParams, this._projectService);
 
   @override
   ngOnInit() {

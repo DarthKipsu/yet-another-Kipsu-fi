@@ -1,12 +1,4 @@
-<div class="metadata">
-  {{date}} 
-  <span *ngIf="githubLink != null"> • <a href="{{githubLink}}">Github</a></span>
-  <span *ngIf="languages.isNotEmpty"> •
-    <span *ngFor="let lang of languages"> 
-      {{lang}}<span *ngIf="languages.last != lang">,</span>
-    </span>
-  </span>
-</div>
+<project-metadata [project]="project"></project-metadata>
 
 <div class="content">
   <p>You peel off pedals from a flower to find out if your true love loves you – or not. The game uses a set formula to calculate from your name and your loved ones name, to decide the outcome of the game.</p>
