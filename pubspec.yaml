@@ -9,6 +9,8 @@ dependencies:
   dart_to_js_script_rewriter: ^1.0.1
 dev_dependencies:
   scissors: ^0.6.0
+executables:
+  rewrites: null
 transformers:
 - scissors:
     compiledCssExtension: replace
