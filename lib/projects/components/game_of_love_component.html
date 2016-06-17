@@ -1,0 +1,25 @@
+<div class="metadata">
+  {{date}} 
+  <span *ngIf="githubLink != null"> • <a href="{{githubLink}}">Github</a></span>
+  <span *ngIf="languages.isNotEmpty"> •
+    <span *ngFor="let lang of languages"> 
+      {{lang}}<span *ngIf="languages.last != lang">,</span>
+    </span>
+  </span>
+</div>
+
+<div class="content">
+  <p>You peel off pedals from a flower to find out if your true love loves you – or not. The game uses a set formula to calculate from your name and your loved ones name, to decide the outcome of the game.</p>
+  <p>Voice acting by Uma Thurman and Arnold Schwarzenegger, used on basis of fair use.</p>
+
+  <h3>Comments</h3>
+
+  <p>This was a “stupid idea” my spouse an I had in late Valentine’s Day evening. Took about 3 hours from the idea to a completed game. My contribution was mainly the graphics and how to get the flower assembled.</p>
+
+  <h3>What I could have done better</h3>
+  <p>I was so slow at making my part, that my spouse did almost everything himself!</p>
+
+  <h3>Lesson learned</h3>
+
+  <p>Don’t try to embark on a project with too strict schedule. We finished the game just before midnight and had we got more time, the outcome could have been a lot more professional.</p>
+</div>

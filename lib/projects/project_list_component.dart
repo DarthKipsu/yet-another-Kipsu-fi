@@ -26,8 +26,6 @@ class ProjectListComponent implements OnActivate {
 
   goTo(Project project) {
     _router.navigate(['Project', {'project': project.id}]);
-    _titleService.title = project.title;
-    _titleService.subtitle = project.subtitle;
   }
 }
 
