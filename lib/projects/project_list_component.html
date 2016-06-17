@@ -1,6 +1,7 @@
 <ul>
   <li *ngFor="let project of projects" (click)="goTo(project)">
     <div class="title">{{project.title}}</div>
+    <div class="date">{{project.formattedDate}}</div>
     <div class="subtitle">{{project.subtitle}}</div>
   </li>
 </ul>

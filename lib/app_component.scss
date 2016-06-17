@@ -1,6 +1,6 @@
 $border-color: #eee;
-$social-media-fill-color: #828282;
 $link-hover-color: violet;
+$social-media-fill-color: #828282;
 $text-highlight-color: #844b99;
 
 .nav {
@@ -9,8 +9,8 @@ $text-highlight-color: #844b99;
   padding: 10px 0 10px 16px;
 
   a {
-    text-decoration: none;
     color: $text-highlight-color;
+    text-decoration: none;
 
     &:hover {
       color: $link-hover-color;
@@ -39,8 +39,8 @@ $text-highlight-color: #844b99;
 
 .title {
   h1 {
-    margin: 16px 0 0;
     color: $text-highlight-color;
+    margin: 16px 0 0;
   }
 
   hr {
@@ -53,9 +53,9 @@ $text-highlight-color: #844b99;
   margin: 16px 0 20px;
 
   h3 {
-    margin-top: 50px;
-    font-size: 22px;
     color: $text-highlight-color;
+    font-size: 22px;
+    margin-top: 50px;
   }
 
   hr {
