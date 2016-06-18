@@ -1,1 +1,7 @@
-Articles: under construction...
+<ul>
+  <li *ngFor="let article of articles">
+    <div class="title">{{article.title}}</div>
+    <div class="date">{{article.formattedDate}}</div>
+    <div class="subtitle">{{article.subtitle}}</div>
+  </li>
+</ul>

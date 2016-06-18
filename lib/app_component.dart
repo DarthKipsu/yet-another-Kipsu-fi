@@ -8,6 +8,7 @@ import 'package:kipsu_fi/photography/photography_component.dart';
 import 'package:kipsu_fi/projects/project.dart';
 import 'package:kipsu_fi/projects/project_list_component.dart';
 import 'package:kipsu_fi/projects/project_component.dart';
+import 'package:kipsu_fi/services/article_service.dart';
 import 'package:kipsu_fi/services/project_service.dart';
 import 'package:kipsu_fi/services/title_service.dart';
 
@@ -15,8 +16,8 @@ import 'package:kipsu_fi/services/title_service.dart';
     selector: 'app',
     templateUrl: 'app_component.html',
     styleUrls: const ['app_component.css'],
-    directives: const [ROUTER_DIRECTIVES, ProjectComponent],
-    providers: const [ROUTER_PROVIDERS, ProjectService, TitleService])
+    directives: const [ROUTER_DIRECTIVES],
+    providers: const [ROUTER_PROVIDERS, ArticleService, ProjectService, TitleService])
 
 @RouteConfig(const [
     const Route(path: '/', name: 'Unicorns', component: UnicornsComponent, useAsDefault: true),
