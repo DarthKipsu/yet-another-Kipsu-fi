@@ -7,6 +7,7 @@ import 'package:kipsu_fi/projects/components/battleship_component.dart';
 import 'package:kipsu_fi/projects/components/don_quijote_component.dart';
 import 'package:kipsu_fi/projects/components/eclipse_component.dart';
 import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
+import 'package:kipsu_fi/projects/components/kipsufi_component.dart';
 import 'package:kipsu_fi/projects/components/othello_component.dart';
 import 'package:kipsu_fi/projects/components/ratebeer_component.dart';
 import 'package:kipsu_fi/projects/components/tunnit_component.dart';
@@ -15,12 +16,23 @@ import 'package:kipsu_fi/projects/components/tunnit_component.dart';
 class ProjectService {
   final Map<String, Project> registered_projects = {
 
+    'KipsuFi': new Project(
+        'KipsuFi',
+        'KipsuFi',
+        'The first version of my website, built completely using Clojure and ClojureScript.',
+        new DateTime(2015, 10, 12),
+        [Language.CLOJURE, Language.CLOJURESCRIPT, Language.LESS, Language.POSTGRESQL],
+        {
+          'GitHub': '//github.com/darthkipsu/KipsuFi',
+        },
+        KipsuFiComponent),
+
     'Tunnit': new Project(
         'Tunnit',
         'Tunnit',
         'A worktime tracking application, with easy hour tracking and calendar for viewing the hours.',
         new DateTime(2015, 4, 18),
-        [Language.RUBY_ON_RAILS, Language.SASS],
+        [Language.RUBY_ON_RAILS, Language.SASS, Language.SQLITE],
         {
           'GitHub': '//github.com/darthkipsu/tunnit',
           'Preview': '//tunnit.herokuapp.com/'
@@ -44,7 +56,7 @@ class ProjectService {
         'RateBeer',
         'Beer rating software with Ruby on Rails. A rails course work.',
         new DateTime(2015, 3, 1),
-        [Language.RUBY_ON_RAILS, Language.SASS],
+        [Language.RUBY_ON_RAILS, Language.SASS, Language.SQLITE],
         {
           'GitHub': '//github.com/darthkipsu/ratebeer',
           'Preview': '//quiet-castle-3777.herokuapp.com/'
