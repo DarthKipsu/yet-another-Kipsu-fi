@@ -5,12 +5,12 @@ import 'package:kipsu_fi/services/title_service.dart';
 
 @Component(
     selector: 'articles',
-    templateUrl: 'articles_component.html',
-    styleUrls: const ['articles_component.css'])
-class ArticlesComponent implements OnActivate {
+    templateUrl: 'articles_list_component.html',
+    styleUrls: const ['articles_list_component.css'])
+class ArticleListComponent implements OnActivate {
   final TitleService _titleService;
 
-  ArticlesComponent(this._titleService);
+  ArticleListComponent(this._titleService);
 
   routerOnActivate(next, prev) {
     _titleService.title = "Articles";
