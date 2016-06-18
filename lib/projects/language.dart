@@ -1,6 +1,7 @@
 class Language {
   static const JAVASCRIPT = "JavaScript";
-  static const HTML = "HTML";
+  static const JQUERY = "jQuery";
+  static const NODEJS = "NodeJs";
 
   static get values => [JAVASCRIPT];
 

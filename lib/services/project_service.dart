@@ -4,17 +4,29 @@ import 'package:kipsu_fi/projects/project.dart';
 import 'package:kipsu_fi/projects/language.dart';
 import 'package:kipsu_fi/projects/components/battleship_component.dart';
 import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
+import 'package:kipsu_fi/projects/components/othello_component.dart';
 
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'Othello': new Project(
+        'Othello',
+        'Othello',
+        'A two player game of reversi.',
+        new DateTime(2014, 5, 4),
+        [Language.JAVASCRIPT, Language.JQUERY, Language.NODEJS],
+        {
+          'GitHub': '//github.com/darthkipsu/othello'
+        },
+        OthelloComponent),
 
     'Battleship': new Project(
         'Battleship',
         'The Battleship',
         'A classic battleship game against a computer AI. Whoever sinks all the opponent ships first is the winner.',
         new DateTime(2014, 2, 16),
-        [Language.JAVASCRIPT],
+        [Language.JAVASCRIPT, Language.JQUERY],
         {
           'GitHub': '//github.com/darthkipsu/Laivanupotus'
         },

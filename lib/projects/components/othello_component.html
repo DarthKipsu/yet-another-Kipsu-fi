@@ -1,0 +1,21 @@
+<project-metadata [project]="project"></project-metadata>
+
+<div class="content">
+  <p>The Othello game is a two player game, where in entering the game, you create a game room for yourself. The server uses Node.js with express framework, that provides ready-made room features. A room is identified with a random hash and your opponent can join by entering the game with the same hash. The game also works with any hash, so you can use your self made room names if you wish to.</p>
+  <p>The first player to enter the room will be the black player. The second player will be assigned the white player. The game starts as soon as both players have arrived. The game can handle either of the players disconnecting from the server and reconnecting by entering with the rooms hash, the game status is saved and they can continue from where they left off.</p>
+  <p>I’ve used 3D transformations to create three dimensional chips. The chips are moved to the table with css animations and rotated the same way. I couldn’t get this part working properly with IE and some other browsers, so the game only supports Chrome and Firefox. The way to solve this would have been to leave the animations and transformations out for the rest of the browsers, but it didn’t seem relevant to add the browser support for this kind of project. Chrome can render the chips better than Firefox, so I recommend using it to play this game.</p>
+  <p>The game highlights all possible chip placements in the beginning of each players turn and also shows which chips will be rotated by a red flip indicator line. Unfortunately the flip indicator line also works most reliably with Chrome and I couldn’t solve why it sometimes isn’t visible with Firefox.</p>
+  <p>Other features include scoreboard that’s updated after each turn.</p>
+
+  <h3>Comments</h3>
+
+  <p>Othello was a very exiting project, because it was my first project where I used test based development and also my first touch with server side coding. The project was a lot bigger than I had anticipated, but it’s been fun to work with it, throughout the development.</p>
+
+  <h3>What I could have done better</h3>
+
+  <p>I could have planned my function naming and placement a bit better. I thought I wouldn’t need so many of them, so I didn’t pay that much attention on the names and in which file the functions would fit the best. The outcome is a bit entangled at times and not as clear as it could be.</p>
+
+  <h3>Lesson learned</h3>
+
+  <p>Choosing the names for the functions and variables is important. I should use clear and obvious names to avoid confusion after the application has grown bigger.</p>
+</div>
