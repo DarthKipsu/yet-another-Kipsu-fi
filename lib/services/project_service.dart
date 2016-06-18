@@ -2,6 +2,7 @@ import 'package:angular2/core.dart';
 
 import 'package:kipsu_fi/projects/project.dart';
 import 'package:kipsu_fi/projects/language.dart';
+import 'package:kipsu_fi/projects/components/abandon_all_hope_component.dart';
 import 'package:kipsu_fi/projects/components/battleship_component.dart';
 import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
 import 'package:kipsu_fi/projects/components/othello_component.dart';
@@ -9,6 +10,17 @@ import 'package:kipsu_fi/projects/components/othello_component.dart';
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'AbandonAllHope': new Project(
+        'AbandonAllHope',
+        'Abandon All Hope',
+        'A tower defence inspired zombie survival game. How many days can you survive?',
+        new DateTime(2014, 12, 12),
+        [Language.JAVA],
+        {
+          'GitHub': '//github.com/darthkipsu/abandon-all-hope'
+        },
+        AbandonAllHopeComponent),
 
     'Othello': new Project(
         'Othello',
