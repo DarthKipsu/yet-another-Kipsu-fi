@@ -1,0 +1,45 @@
+<project-metadata [project]="project"></project-metadata>
+
+<div class="content">
+  <p>RPS robot is a rock-paper-scissors playing Lego Mindstorms robot I created during my winter vacation in 2015.</p>
+  <p>The robot in itself is quite simple. It’s a robotic hand that can hold it’s four fingers in a fist position, raise two middle fingers to play scissors and all fingers to play paper. In addition to the finger movements, there is a movable arm that moves the whole hand, like how you typically move your arm when playing rock-paper-scissors.</p>
+  <p>The robot is connected to a computer with a bluetooth connection and reads integers over the bluetooth to get instructions on what to do. The computer does all the calculations for the game and just tells the robotic arm when to play, for example rock.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/projects/rpsrobot2.jpg" /></div>
+  <p>The more interesting thing happens within the program on the computer. The way the game works is that you first select a username, so the robot will always play according to your personal game history and not use data collected from other users to play against you. Then you play games just like you would against a human opponent. The program asks you to start and sends instructions for the robot to play. You and the robot both shake your hands three times and on the third one reveal what you have played. The computer reads the player hand sign using a webcam, so all you need to do is play the game.</p>
+  <p>There is a short video to demonstrate how the game is played:</p>
+  <div class="video">
+    <a href="//www.youtube.com/watch?v=TqbpJkDx-Y8">
+      <img src="//img.youtube.com/vi/TqbpJkDx-Y8/0.jpg" />
+    </a>
+  </div>
+  <p>The program uses two kinds of machine learning to be able to do this.</p>
+
+  <h3>Hand sign recognition</h3>
+
+  <p>To be able to read the hand sign from the user, the program uses Perceptron linear classification algorithm, with one-vs-one method for reducing the 3-dimensional problem to three separate binary classification problems.</p>
+  <p>It uses black and white images saved as a byte array to do the classification and each time after a game has been played it saves the newly taken image with its label to the database to increase the size and diversity of the database with each game. The database images look like this:</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/projects/rpsrobot3.jpg" /></div>
+  <p>After each game, before saving the image, the program displays the taken image to the player and asks if what it interpreted it to be was correct. It will only save an image if the label is confirmed or if the user changes the label, to avoid mislabeled images getting into the database.</p>
+  <p>The algorithm is quite efficient. With only a bit over 200 images in my database, the classification error is only about 5%. Most of the images in my database are from my hand, so the program is quite good at recognising it, but the really cool thing with saving each image after a game is, that even if the algorithm would do poorly at recognising some other hand that doesn’t look anything like mine, it would quite soon learn to recognise that hand as well!</p>
+
+  <h3>RPC AI</h3>
+
+  <p>The RPC AI is accountable for deciding which sign the game will choose to play next. The program keeps a record of each game with a {player sign, AI sign} kind of pairs, saved under a player’s username.</p>
+  <p>The AI uses three prioritized strategies, selecting first the top strategy, unless it doesn’t have enough data for it or it notices a lower strategy scoring a lot better. All the strategies are based on calculating Bayes optimality for each possible move the AI could make and differ in a way the probability of what the user will select is calculated.</p>
+  <p>There are three main strategies with adjustable variables which the AI can use. The first one is comparing the last previous game with all other previous games like it and looking up what was played immediately after that game with those previous games. You can either compare pairs of what user and AI both played or only what the user played.</p>
+  <p>The other two strategies involve looking at same kinds of sequences that were previously played with the ongoing game sequence. You can either select the length of the sequence you want to match or find the longest sequence.</p>
+  <p>I found the best combination of strategies is to be using the last previous games comparison with player and AI games and only player games as first and second strategy and 2 previous games sequence as the third strategy. With 100 games on a test username (there is a function for testing long sequences so you don’t need to actually play a 100 games to test it) the AI wins from 65% to 70% of games this way, (when draws are ignored) so more than two thirds of games instead of every other which would be the expected outcome if both play randomly.</p>
+
+  <h3>Comments</h3>
+
+  <p>I was instructor at a winter robot programming course at the University this winter, so I got to lend a robot kit myself and wanted to test out some machine learning algorithms I had learned during the semester. That’s where it all started.</p>
+  <p>I’m quite happy about how the program turned out to be. The actual robot part might have been a bit unnecessary (you can play the game without it as well), but who doesn’t like to play with Legos on their vacation. :)</p>
+
+  <h3>What I could have done better</h3>
+
+  <p>I know there is rock-paper-scissors algorithms that can do better than 70% win rates, so if I wanted an optimal robot, I should have made some research on how they are usually implemented. Also I created a function to test the efficiency on the AI decisions quite late during the project, and might have saved some time from coding those strategies for AI decision that ended up being quite inefficient.</p>
+
+  <h3>Lesson learned</h3>
+
+  <p>Leave the best parts last then you don’t get bored on the way. This was one of the best projects I had because completing it wasn’t such a labor, when I left a lot of interesting stuff to the end of the project instead of doing all in the initial excitement.</p>
+</div>

@@ -10,11 +10,23 @@ import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
 import 'package:kipsu_fi/projects/components/kipsufi_component.dart';
 import 'package:kipsu_fi/projects/components/othello_component.dart';
 import 'package:kipsu_fi/projects/components/ratebeer_component.dart';
+import 'package:kipsu_fi/projects/components/rpsrobot_component.dart';
 import 'package:kipsu_fi/projects/components/tunnit_component.dart';
 
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'RPSRobot': new Project(
+        'RPSRobot',
+        'RPS Robot',
+        'Rock-paper-scissors playing Lego Mindstorms robot with machine learning algorithms to spice things up.',
+        new DateTime(2016, 1, 16),
+        [Language.JAVA, Language.LEJOS, Language.PYTHON, Language.NUMPY, Language.SCIKIT_LEARN],
+        {
+          'GitHub': '//github.com/darthkipsu/RPS-robot',
+        },
+        RPSRobotComponent),
 
     'KipsuFi': new Project(
         'KipsuFi',
