@@ -9,6 +9,7 @@ import 'package:kipsu_fi/services/title_service.dart';
     selector: 'articles',
     templateUrl: 'articles_list_component.html',
     styleUrls: const ['articles_list_component.css'])
+
 class ArticleListComponent implements OnActivate {
   final TitleService _titleService;
   final ArticleService _articleService;
@@ -22,5 +23,9 @@ class ArticleListComponent implements OnActivate {
   }
 
   List<Article> get articles => _articleService.registered_articles.values;
+
+  goTo(Article article) {
+    _router.navigate(['Article', {'article': article.id}]);
+  }
 }
 

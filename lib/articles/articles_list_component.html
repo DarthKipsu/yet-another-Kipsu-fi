@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let article of articles">
+  <li *ngFor="let article of articles" (click)="goTo(article)">
     <div class="title">{{article.title}}</div>
     <div class="date">{{article.formattedDate}}</div>
     <div class="subtitle">{{article.subtitle}}</div>
