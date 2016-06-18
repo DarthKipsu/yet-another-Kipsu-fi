@@ -5,6 +5,7 @@ import 'package:kipsu_fi/projects/language.dart';
 import 'package:kipsu_fi/projects/components/abandon_all_hope_component.dart';
 import 'package:kipsu_fi/projects/components/battleship_component.dart';
 import 'package:kipsu_fi/projects/components/don_quijote_component.dart';
+import 'package:kipsu_fi/projects/components/eclipse_component.dart';
 import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
 import 'package:kipsu_fi/projects/components/othello_component.dart';
 import 'package:kipsu_fi/projects/components/ratebeer_component.dart';
@@ -12,6 +13,18 @@ import 'package:kipsu_fi/projects/components/ratebeer_component.dart';
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'EclipseCalculator': new Project(
+        'EclipseCalculator',
+        'Eclipse Calculator',
+        'A probability calculator for the Galaxy.',
+        new DateTime(2015, 3, 6),
+        [Language.CLOJURE, Language.JAVASCRIPT, Language.JQUERY],
+        {
+          'GitHub (backend)': '//github.com/darthkipsu/eclipse-calculator',
+          'GitHub (frontend)': '//github.com/darthkipsu/eclipse-calc-ui'
+        },
+        EclipseComponent),
 
     'RateBeer': new Project(
         'RateBeer',

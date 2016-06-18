@@ -1,0 +1,23 @@
+<project-metadata [project]="project"></project-metadata>
+
+<div class="content">
+  <p>The application is used to calculate probabilities for winning a fight in a fantastic <a href="//en.wikipedia.org/wiki/Eclipse_%28board_game%29">Eclipse board game</a>.</p>
+  <p>Eclipse calculator project started spring 2014, before I had begun my studies at University. I made an user interface, with CSS styling and JavaScript/jQuery functionality, but failed to get the actual probability calculations done, so the project layed dormant for several months and seemed like it will never be finished. When I had to come up with a subject for my algorithms and data structures laboratory course in spring 2015, I decided I’d finally finish this old project and create the probability calculations as a service for the user interface.</p>
+  <p>I had recently started studying Clojure programming language and wanted to use something else than Java for a while, so I decided to build the service using Clojure. That was a good choise although implementing my own datastructures as required for the course was a bit more challenging task. I ended up mostly rewriting some of the native algorithms for Clojure.</p>
+  <p>The main idea with the calculator is, that you will select races from the game, upgrade ships as you would ingame and then see how big winning chances you get when fighting your enemy with selected amount of ships against each other. The program uses my own algorithm for falculating the probabilities, using pretty close to a brute force way of calculating every possible outcome and then looking in which of the outcomes at least one of your ships is alive and none of the enemy ships are left standing.</p>
+  <p>The probabilities are saved for each hull in each of the ships and increased as the ships simulate fighting each other by their initiative order. The fighting mechanism in the game proved out to be more complex than I had imagined first, but I managed to account every possible ship upgrade and weapon type in, so that the results are realistic.</p>
+  <p>The problem is that because fighting involves throwing dice and no matter the upgrades, so there’s always possibility of a miss or a hit. This means there’s no clear way of the program knowing when the fight should be over. At the moment three rounds are simulated and the results are based on that, but a better approach had I had more time, would have been to stop simulating when it would have been quite likely one of the sides was dead.</p>
+
+  <h3>Comments</h3>
+
+  <p>Calculating probabilities is not easy. Especially when it’s not just simple dice but the dice have different stats and the weapon orders are different and initiative needs to be considered as well as the probability of the target being alive in the first place… I had to write the logic for calculating the outcome possibilities three times from scratch, because I had not taken everything into consideration. At one point I also had to change the way the information is stored because the numbers begun getting really precise really fast.</p>
+  <p>I had a lot of fun with the project as well as a few desperate feeling moments. I welcomed the challenge and think the outcome is quite sweet.</p>
+
+  <h3>What I could have done better</h3>
+
+  <p>When writing this I’ve already learned a bit more Clojure and see there’s some way too complicated desicions I’ve made. Instead of reinventing the wheel, I could have googled more about how to achieve my goals in a better way.</p>
+
+  <h3>Lesson learned</h3>
+
+  <p>Things might be more complicated than what they look like up front.</p>
+</div>
