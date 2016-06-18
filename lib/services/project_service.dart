@@ -9,10 +9,23 @@ import 'package:kipsu_fi/projects/components/eclipse_component.dart';
 import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
 import 'package:kipsu_fi/projects/components/othello_component.dart';
 import 'package:kipsu_fi/projects/components/ratebeer_component.dart';
+import 'package:kipsu_fi/projects/components/tunnit_component.dart';
 
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'Tunnit': new Project(
+        'Tunnit',
+        'Tunnit',
+        'A worktime tracking application, with easy hour tracking and calendar for viewing the hours.',
+        new DateTime(2015, 4, 18),
+        [Language.RUBY_ON_RAILS, Language.SASS],
+        {
+          'GitHub': '//github.com/darthkipsu/tunnit',
+          'Preview': '//tunnit.herokuapp.com/'
+        },
+        TunnitComponent),
 
     'EclipseCalculator': new Project(
         'EclipseCalculator',
