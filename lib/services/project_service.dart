@@ -7,10 +7,23 @@ import 'package:kipsu_fi/projects/components/battleship_component.dart';
 import 'package:kipsu_fi/projects/components/don_quijote_component.dart';
 import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
 import 'package:kipsu_fi/projects/components/othello_component.dart';
+import 'package:kipsu_fi/projects/components/ratebeer_component.dart';
 
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'RateBeer': new Project(
+        'RateBeer',
+        'RateBeer',
+        'Beer rating software with Ruby on Rails. A rails course work.',
+        new DateTime(2015, 3, 1),
+        [Language.RUBY_ON_RAILS, Language.SASS],
+        {
+          'GitHub': '//github.com/darthkipsu/ratebeer',
+          'Preview': '//quiet-castle-3777.herokuapp.com/'
+        },
+        RateBeerComponent),
 
     'DonQuijote': new Project(
         'DonQuijote',
@@ -39,7 +52,7 @@ class ProjectService {
         'Othello',
         'A two player game of reversi.',
         new DateTime(2014, 5, 4),
-        [Language.JAVASCRIPT, Language.JQUERY, Language.NODEJS],
+        [Language.JAVASCRIPT, Language.JQUERY, Language.NODEJS, Language.EXPRESS],
         {
           'GitHub': '//github.com/darthkipsu/othello'
         },
