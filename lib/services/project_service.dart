@@ -3,6 +3,7 @@ import 'package:angular2/core.dart';
 import 'package:kipsu_fi/projects/project.dart';
 import 'package:kipsu_fi/projects/language.dart';
 import 'package:kipsu_fi/projects/components/abandon_all_hope_component.dart';
+import 'package:kipsu_fi/projects/components/baana_predictions_component.dart';
 import 'package:kipsu_fi/projects/components/battleship_component.dart';
 import 'package:kipsu_fi/projects/components/don_quijote_component.dart';
 import 'package:kipsu_fi/projects/components/eclipse_component.dart';
@@ -16,6 +17,17 @@ import 'package:kipsu_fi/projects/components/tunnit_component.dart';
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'BaanaPredictions': new Project(
+        'BaanaPredictions',
+        'Baana Predictions',
+        'Practical machine learning project, with an aim to predict the number of cyclists using Baana cyclist route daily.',
+        new DateTime(2016, 3, 14),
+        [Language.PYTHON, Language.NUMPY, Language.SCIKIT_LEARN, Language.MATPLOTLIB],
+        {
+          'GitHub': '//github.com/darthkipsu/baana-predictions',
+        },
+        BaanaPredictionsComponent),
 
     'RPSRobot': new Project(
         'RPSRobot',

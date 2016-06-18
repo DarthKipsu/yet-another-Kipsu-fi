@@ -7,6 +7,7 @@ class Language {
   static const JQUERY = 'jQuery';
   static const LEJOS = 'LeJOS';
   static const LESS = 'Less';
+  static const MATPLOTLIB = 'matplotlib';
   static const NODEJS = 'Node.js';
   static const NUMPY = 'NumPy';
   static const POSTGRESQL = 'PostgreSQL';
