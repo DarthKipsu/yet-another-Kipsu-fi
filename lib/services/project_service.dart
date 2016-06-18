@@ -4,12 +4,24 @@ import 'package:kipsu_fi/projects/project.dart';
 import 'package:kipsu_fi/projects/language.dart';
 import 'package:kipsu_fi/projects/components/abandon_all_hope_component.dart';
 import 'package:kipsu_fi/projects/components/battleship_component.dart';
+import 'package:kipsu_fi/projects/components/don_quijote_component.dart';
 import 'package:kipsu_fi/projects/components/game_of_love_component.dart';
 import 'package:kipsu_fi/projects/components/othello_component.dart';
 
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'DonQuijote': new Project(
+        'DonQuijote',
+        'Don Qujote',
+        'A wind mill fighting Lego Mindstorm robot.',
+        new DateTime(2015, 1, 10),
+        [Language.JAVA, Language.LEJOS],
+        {
+          'GitHub': '//github.com/darthkipsu/massive-ironman'
+        },
+        DonQuijoteComponent),
 
     'AbandonAllHope': new Project(
         'AbandonAllHope',
