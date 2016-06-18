@@ -4,6 +4,7 @@ import 'package:kipsu_fi/projects/project.dart';
 import 'package:kipsu_fi/projects/language.dart';
 import 'package:kipsu_fi/projects/components/abandon_all_hope_component.dart';
 import 'package:kipsu_fi/projects/components/baana_predictions_component.dart';
+import 'package:kipsu_fi/projects/components/bachelors_thesis_component.dart';
 import 'package:kipsu_fi/projects/components/battleship_component.dart';
 import 'package:kipsu_fi/projects/components/don_quijote_component.dart';
 import 'package:kipsu_fi/projects/components/eclipse_component.dart';
@@ -17,6 +18,17 @@ import 'package:kipsu_fi/projects/components/tunnit_component.dart';
 @Injectable()
 class ProjectService {
   final Map<String, Project> registered_projects = {
+
+    'BachelorsThesis': new Project(
+        'BachelorsThesis',
+        'Bachelor\'s Thesis',
+        'My Batchelor\'s thesis covering how to build a chess AI using machine learning.',
+        new DateTime(2016, 5, 8),
+        [],
+        {
+          'Preview': '//darth.kipsu.fi/papers/kandi.pdf',
+        },
+        BachelorsThesisComponent),
 
     'BaanaPredictions': new Project(
         'BaanaPredictions',
