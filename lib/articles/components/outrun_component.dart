@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:js';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -24,6 +27,9 @@ class OutrunComponent implements OnInit {
     article = _articleService.getArticle(_routeParams.get('article'));
     _titleService.title = article.title;
     _titleService.subtitle = article.subtitle;
+    JsObject hljs = context['hljs'];
+    final codeBlocks = querySelectorAll('pre code');
+    codeBlocks.forEach((block) => hljs.callMethod('highlightBlock', [block]));
   }
 }
 

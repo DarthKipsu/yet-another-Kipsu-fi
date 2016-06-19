@@ -70,3 +70,8 @@ $text-highlight-color: #844b99;
   }
 }
 
+:host /deep/ pre {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
