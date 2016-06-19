@@ -1,0 +1,109 @@
+<article-metadata [article]="article"></article-metadata>
+
+<div class="content">
+  <p>Fluency with matrices is something that’s required for mathematics and physics, but it’s also super useful skill for a programmer. Matrices are really good for representing specific types of data and doing calculations with them can optimize your program quite a bit.</p>
+  <p>A matrix can be considered a kind of a two dimensional array, where data is stored as rows and columns. In this article I’m going to cover some common calculations made with matrices, then talk about how to use them for programming purposes.</p>
+
+  <h3>Matrix and Vector basics</h3>
+
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix01.jpg" /></div>
+  <p>As mentioned above, a matrix consist of rows and columns. The matrix dimensions can be displayed as rows x columns as in the image above. A single value in a matrix A can be accessed as <span class="val">rows x columns</span> where i is the row and j is the column of A. Usually in math, matrices are indexed starting from 1, but you can also have 0-indexed matrices.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix02.jpg" /></div>
+  <p>Vector is a kind of a special case of a matrix. It has only single row or column. Vectors are often one of the most primitive data structures, especially in object oriented programming languages.</p>
+
+  <h3>Addition & scalar multiplication</h3>
+
+  <p>Addition and matrix multiplication, also called as scalar multiplication are perhaps not the most useful operations for a programmer, but I will quickly go through them here in the name of wholeness.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix03.jpg" /></div>
+  <p>Adding two matrices together is just adding each number from both the matrices on the same indexes together. The matrices need to be of the same dimension for this to work.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix04.jpg" /></div>
+  <p>In multiplication, you simply multiply each number with the multiplier. Division is done in exact same manner. Combinations of addition, multiplication and so on follow normal order of operations in mathematics.</p>
+
+  <h3>Multiplying two matrices</h3>
+
+  <p>Now what’s really interesting, is multiplying two matrices together. This will not only allow us to simplify our code when we would otherwise require complex calculation loops, but also makes the functions more efficient! What is there not to love!</p>
+  <p>I will show you how to use these in real programming situations in no time, but first, let’s look at how multiplying two matrices together actually works and which are the most important rules that apply.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix05.jpg" /></div>
+  <p>First thing you should know is to multiply two matrices together, the width of the first matrix has to be the same as the height of the second. If they are the other way around, you can’t just swap them around and expect to get the same result. So the second rule is that matrix to matrix multiplication is not commutative: A times B is not the same as B times A!</p>
+  <p>The dimensions of the outcome matrix will be the height of the first matrix and the width of the second. If one of the matrices is a vector, it’s all good, remember that vector is just a special case of a matrix and treat it as one.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix06.jpg" /></div>
+  <p>To generate the first column of your outcome, what you want to do is take the first row of matrix A and calculate the sum of multiplying each index of the row with the corresponding index of the first column of matrix B. This is the topmost value in the first column of the outcome.</p>
+  <p>To get the second value, you just take the second row of A and repeat with the first column of B. Do this for all the rows in A, always using the first column of B.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix07.jpg" /></div>
+  <p>To get the second column of the outcome, you once again start by taking the first row of A, but this time calculate the sum of multiplying each index with the corresponding index from the second column of B. Then continue with the second row of A and second row of B and so on.</p>
+  <p>Once you have repeated this with all the columns on B (if you have more than in the example), your outcome matrix should be filled.</p>
+
+  <h3>Matrix transpose</h3>
+
+  <p>In most cases, matrix to matrix multiplication can get you far, but sometimes you also need to calculate a matrix transpose. Lucky for you, that’s super easy!</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix09.jpg" /></div>
+  <p>Matrix transpose is just the matrix rows shifted to columns instead. So the first row of the matrix becomes the first column and so on.</p>
+
+  <h3>Fibonacci with matrices</h3>
+
+  <p>Any coding tutorials without an example of how to calculate Fibonacci numbers would not be complete, so let’s look at how to do this with matrices. Fibonacci numbers are a sequence of numbers starting from 0 and 1 , where the subsequent number is always the sum of the two previous two numbers. So the first Fibonacci numbers are <span class="val">0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89…</span></p>
+  <p>You can calculate the n:th Fibonacci number by a recursive tree function, but this will lead to exponential time for the function’s time complexity! To do a bit better, you could reduce the time complexity to linear time by simply memorizing the two previous numbers and just looping until you’re at the desired value. With matrices however, you can do even better and reduce the time complexity to logarithmic time.</p>
+  <p>Every time you have a calculation, where you need to repeat a same kind of calculation again and again, like the one used to calculate the n:th Fibonacci number:</p>
+  <pre class="prettyprint nolinenums"><code>do n times:
+    a := b
+    b := a + b</code></pre>
+  <p>You can instead create a multiplier matrix with the increase / decrease of the values in your linear time function and multiply them with the starting values like so:</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix10.jpg" /></div>
+  <p>To get the n:th Fibonacci you just repeat the process n times. This will simplify to raising the multiplier function to the power of n and then multiplying with the starting values:</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix11.jpg" /></div>
+  <p>Exponentiation of matrices can be done in logarithmic time:</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/matrix12.jpg" /></div>
+  <p>If this seems obscure, you can check the java implementation below to see all the steps needed to calculate the n:th Fibonacci. This solution will work until the 92:th Fibonacci, after which Java Long is not enough to display the result. Bigger results could be calculated with ease: I used a version of this that would only print the modulo of the result to calculate the 50,000,000,000,000,000:th Fibonacci number in just 0.15 seconds!</p>
+  <pre class="prettyprint linenums"><code>public class Fibonacci {
+
+  private static long[][] matrix;
+
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    matrix = new long[2][2];
+    matrix[0][0] = 0L;
+    matrix[1][0] = 1L;
+    matrix[0][1] = 1L;
+    matrix[1][1] = 1L;
+    powMatrix(scanner.nextLong() - 2);
+    System.out.println(matrix[1][1]);
+  }
+
+  private static void powMatrix(long n) {
+    if (n &lt; 2) return;
+    if (n % 2 == 0) {
+      powMatrix(n / 2);
+      squareMatrix();
+    } else {
+      long c = matrix[0][0];
+      long d = matrix[1][0];
+      long v = matrix[0][1];
+      long w = matrix[1][1];
+      powMatrix(n-1);
+      multiplyMatrix(c, d, v, w);
+    }
+  }
+
+  private static void squareMatrix() {
+    long a = matrix[0][0];
+    long b = matrix[1][0];
+    long x = matrix[0][1];
+    long y = matrix[1][1];
+    matrix[0][0] = a*a + x*b;
+    matrix[1][0] = b*a + y*b;
+    matrix[0][1] = a*x + x*y;
+    matrix[1][1] = b*x + y*y;
+  }
+
+  private static void multiplyMatrix(long c, long d, long v, long w) {
+    long a = matrix[0][0];
+    long b = matrix[1][0];
+    long x = matrix[0][1];
+    long y = matrix[1][1];
+    matrix[0][0] = a*c + x*d;
+    matrix[1][0] = b*c + y*d;
+    matrix[0][1] = a*v + x*w;
+    matrix[1][1] = b*v + y*w;
+  }
+}</code></pre>
+</div>

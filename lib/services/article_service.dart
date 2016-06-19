@@ -2,7 +2,9 @@ import 'package:angular2/core.dart';
 
 import 'package:kipsu_fi/articles/article.dart';
 import 'package:kipsu_fi/articles/components/academy_component.dart';
+import 'package:kipsu_fi/articles/components/futu_component.dart';
 import 'package:kipsu_fi/articles/components/huffman_component.dart';
+import 'package:kipsu_fi/articles/components/matrices_component.dart';
 import 'package:kipsu_fi/articles/components/new_black_component.dart';
 import 'package:kipsu_fi/articles/components/our_project_component.dart';
 import 'package:kipsu_fi/articles/components/outrun_component.dart';
@@ -13,6 +15,20 @@ import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 @Injectable()
 class ArticleService {
   final Map<String, Article> registered_articles = {
+
+    'MatricesForProgramming': new Article(
+        'MatricesForProgramming',
+        'Matrices for Programming',
+        'A small tutorial on how matrices can be used to simplify complex calculations and boost efficiency at the same time.',
+        new DateTime(2015, 8, 17),
+        MatricesComponent),
+
+    'FutuCamp': new Article(
+        'FutuCamp',
+        'Futurice Onboarding Camp',
+        'Summary of what I learned at Futurice onboarding camp.',
+        new DateTime(2015, 6, 13),
+        FutuComponent),
 
     'Academy': new Article(
         'Academy',
