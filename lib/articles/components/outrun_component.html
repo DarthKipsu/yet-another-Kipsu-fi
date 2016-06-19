@@ -3,7 +3,7 @@
 <div class="content">
   <p>I found out <a href="//reaktor.fi/">Reaktor</a> is seeking employees with a fast track challenge, where you need to program a solution to a problem for them and if done well, you might get a job. I took part in it and made my entry yesterday evening.</p>
   <p>The job was to find the most liked route through Out Run gamefield, from a file with the likes collected in a pyramid shape. You could travel down the pyramid by accessing the two cells below your current position and the most liked route is the one that adds up to a biggest number. Here’s a picture borrowed from Reaktor site to illustrate the problem:</p>
-  <!--div class="photo"><img src="/packages/kipsu_fi/assets/articles/outrun2.jpg" /></div-->
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/outrun2.jpg" /></div>
   <p>The actual files had 100 lines, adding up to 2^98 different route options. I dealt with the problem by first converting the text file to a two dimensional array, to be able to work with it. I used node.js to import the likes directly from the file, so that any similar file could be fed to the program.</p>
   <p>Next I went through all the lines, summing up each item with the bigger of the two numbers above it and saving it to another array. This way going down the pyramid, each item would add up to as big number as it’s possible for it. Finally checking from the last line, I could get the endpoint of the route with the most likes.</p>
   <p>Now I got the most likes, but I still don’t have the route. Finding the route follows the same kind of formula used to create the sum array, but going from the end towards the beginning. Each line saves the index of the route to another array, which is the final map for the route.</p>
