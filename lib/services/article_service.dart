@@ -4,12 +4,20 @@ import 'package:kipsu_fi/articles/article.dart';
 import 'package:kipsu_fi/articles/components/huffman_component.dart';
 import 'package:kipsu_fi/articles/components/our_project_component.dart';
 import 'package:kipsu_fi/articles/components/outrun_component.dart';
+import 'package:kipsu_fi/articles/components/simulating_ui_component.dart';
 import 'package:kipsu_fi/articles/components/university_entrance_component.dart';
 import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 
 @Injectable()
 class ArticleService {
   final Map<String, Article> registered_articles = {
+
+    'SimulatingUserInterfaces': new Article(
+        'SimulatingUserInterfaces',
+        'Simulating User Interfaces',
+        'Using simulation based user interface design.',
+        new DateTime(2015, 5, 23),
+        SimulatingUIComponent),
 
     'OurProject': new Article(
         'OurProject',
