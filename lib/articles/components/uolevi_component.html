@@ -1,0 +1,230 @@
+<article-metadata [article]="article"></article-metadata>
+
+<div class="content">
+  <p>We had assignment on the data structures and algorithms course at university, to find out the amount of different routes Uolevi (a recurring character in our earlier assignments) could walk through a square shaped park. Uolevi needed to start from the upper left corner and leave from the lower left corner and he could take turns in any direction, as long as he wouldn’t walk through a route he had visited before or leave some place of the park unvisited.</p>
+  <p>Here’s an example with all the possible routes through a 4×4 park:</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/uolevi2.jpg" /></div>
+  <p>The task was to return the answer for the biggest grid we could solve during our exams week to get extra points for the course.</p>
+  <p>It’s an <a href="//en.wikipedia.org/wiki/NP-hard">NP-hard</a> problem, so no fast solution is known at the moment. I tried three different ways to do it, (plus one I didn’t have time to complete) and ended up being able to solve as big as a 9×9 sized park.</p>
+  <p>I first started by creating a recursive algorithm, that would at each square divide into all the possible directions it could travel and sums up all the routes that lead to the end with a route that’s long enough, that it must have visited all the squares. The squares that had been visited before or that were outside the grid weren’t included in the recursion. This solution was slow though, as it checked all the routes, even though at some points it was impossible to reach the end or visit all the squares. So I came up with two optimizations that made the algorithm quite a lot more efficient:</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/uolevi3.jpg" /></div>
+  <p>The first one checks if the squares in front and behind the step have been visited before (green squares). If so, it will check the neighboring squares (blue) to see if either of them have been visited. If neither of them have been visited, that recursion path immediately stops, because there can be no solution where all squares could be visited from this points with still reaching the goal. If you take a turn left from here, you can’t reach the end, or if you take a step right, there’s a loop left behind that you can’t reach anymore. With bigger parks, this optimization can cut the execution time vastly, when the algorithm would otherwise check all the travel positions after this point even though all of them are in vain.</p>
+  <p>The second optimization is similar. Before making a move, the algorithm always checks all the four corner squares from it’s current position (in green). If the corner has been visited, it will check if the two squares between the current position and the corner position (in blue) have also been visited or not. If neither of them have been visited before, that recursion path will end. As with the previous example, it’s a situation where a loop is inevitable, no matter which direction Uolevi would take next.</p>
+  <p>This solution was enough to solve 9×9 grid in some hours. You can see the algorithm code below. It would be no where near solving 10×10 within our time limit though.</p>
+  <pre class="prettyprint lang-js linenums"><code>public class CountWithRecursion {
+
+    private static long options;
+    private static boolean[][] park;
+    private static int sideLength;
+  
+    public static long routeCount(int sides) {
+        options = 0;
+        park = new boolean[side + 2][side + 2];
+        for (int i=0; i&lt;side + 2; i++) {
+            if (i == 0 || i == side + 1) {
+                for (int j=1; j &lt; side + 1; j++) park[i][j] = true;
+            }
+            park[i][0] = true;
+            park[i][side + 1] = true;
+        }
+        sideLength = side;
+        routeCount(1, 1, 1);
+        return options;
+    }
+  
+    public static void routeCount(int x, int y, int worm) {
+  	    park[x][y] = true;
+        if (y == 1 &amp;&amp; x == sideLength) {
+            if (worm == sideLength * sideLength) {
+               options++;
+            }
+        } else if (upperCornersOK(x, y)) {
+            if (down(x, y)) routeCount(x + 1, y, worm + 1);
+            if (up(x,y)) routeCount(x - 1, y, worm + 1);
+  	        if (right(x, y)) routeCount(x, y + 1, worm + 1);
+            if (left(x, y)) routeCount(x, y - 1, worm + 1);
+        }
+  	    park[x][y] = false;
+    }
+  	
+    private static boolean upperCornersOK(int x, int y) {
+        if (park[x - 1][y + 1] &amp;&amp; park[x - 1][y] == false 
+                &amp;&amp; park[x][y + 1] == false) return false;
+        if (park[x - 1][y - 1] &amp;&amp; park[x - 1][y] == false 
+                &amp;&amp; park[x][y - 1] == false) return false;
+        if (park[x + 1][y - 1] &amp;&amp; park[x + 1][y] == false &amp;&amp; 
+                park[x][y - 1] == false) return false;
+        if (park[x + 1][y + 1] &amp;&amp; park[x + 1][y] == false &amp;&amp; 
+                park[x][y + 1] == false) return false;
+        return true;
+    }
+  	
+    private static boolean down(int x, int y) {
+        if (park[x + 1][y]) return false;
+        return !(park[x][y-1] &amp;&amp; park[x][y+1] &amp;&amp; park[x - 1][y] == false);
+    }
+  
+    private static boolean up(int x, int y) {
+        if (park[x - 1][y]) return false;
+        return !(park[x][y-1] &amp;&amp; park[x][y+1] &amp;&amp; park[x + 1][y] == false);
+    }
+  
+    private static boolean right(int x, int y) {
+        if (park[x][y + 1]) return false;
+        return !(park[x-1][y] &amp;&amp; park[x+1][y] &amp;&amp; park[x][y - 1] == false);
+    }
+  
+    private static boolean left(int x, int y) {
+        if (park[x][y - 1]) return false;
+        return !(park[x-1][y] &amp;&amp; park[x+1][y] &amp;&amp; park[x][y + 1] == false);
+    }
+}</code></pre>
+  <p>To further improve the solution, I thought of getting rid of recursion. I have been told java + recursion is equal to slow, so I tried a solution where instead of recursion I’d save the route choices not yet visited into a stack and then have the function look through the stack in a loop. Basically the algorithm would work just as with recursion, but instead of having all those method calls involved, it would work inside a single loop. This solution was slow, as it meant copying and saving the array used to identify which grids had already been visited, within the stack. Copying the array each time there was multiple choices made the algorithm so much slower, I abandoned this solution.</p>
+  <p>I also made a version where I split the original recursive function into four first steps and then sent threads to go through all of them. This way the execution time split to maybe 1/3 from what the single thread version could do, but not enough for 10×10 grid. It was useful though, as I hadn’t done anything with threads before. You can always learn new things even if the solution wouldn’t work as well as planned! :) You can see my thread implementation below.</p>
+  <pre class="prettyprint lang-js linenums"><code>public class Garden {
+    
+    public static int sideLength;
+    public static boolean[][][] parks;
+    public static long[] options;
+
+    public long routeCount(int side) {
+        options = new long[4];
+        sideLength = side;
+        parks = new boolean [4][][];
+        if (side &lt; 4) {
+            parks[0] = buildPark();
+            new RouteCount(0, 1, 1, 1).run();
+        } else {
+            parks[0] = buildPark();
+            parks[1] = buildPark();
+            parks[2] = buildPark();
+            parks[3] = buildPark();
+
+            parks[0][1][1] = true;
+            parks[0][2][1] = true;
+            parks[1][1][1] = true;
+            parks[1][2][1] = true;
+            parks[2][1][1] = true;
+            parks[2][1][2] = true;
+            parks[3][1][1] = true;
+            parks[3][1][2] = true;
+            
+            Thread thread1 = new Thread(new RouteCount(0, 3, 1, 3));
+            Thread thread2 = new Thread(new RouteCount(1, 2, 2, 3));
+            Thread thread3 = new Thread(new RouteCount(2, 2, 2, 3));
+            Thread thread4 = new Thread(new RouteCount(3, 1, 3, 3));
+            
+            thread1.start();
+            thread2.start();
+            thread3.start();
+            thread4.start();
+            
+            try {
+                thread1.join();
+            } catch (InterruptedException ex) {}
+            try {
+                thread2.join();
+            } catch (InterruptedException ex) {}
+            try {
+                thread3.join();
+            } catch (InterruptedException ex) {}
+            try {
+                thread4.join();
+            } catch (InterruptedException ex) {}
+        }
+        return options[0] + options[1] + options[2] + options[3];
+    }
+
+    private boolean[][] buildPark() {
+        boolean[][] park = new boolean[sideLength + 2][sideLength + 2];
+        for (int i=0; i&lt;sideLength + 2; i++) {
+            if (i == 0 || i == sideLength + 1) {
+                for (int j=1; j&lt; sideLength + 1; j++) park[i][j] = true;
+            }
+            park[i][0] = true;
+            park[i][sideLength + 1] = true;
+        }
+        return park;
+    }
+}</code></pre>
+
+
+  <pre class="prettyprint lang-js linenums"><code>public class RouteCount implements Runnable {
+    
+    private final int park;
+    private final int startX;
+    private final int startY;
+    private final int startWorm;
+
+    public RouteCount(int park, int x, int y, int startWorm) {
+        this.park = park;
+        startX = x;
+        startY = y;
+        this.startWorm = startWorm;
+    }
+
+    @Override
+    public void run() {
+        routeCount(startX, startY, startWorm);
+    }
+    
+    public void routeCount(int x, int y, int worm) {
+        Garden.parks[park][x][y] = true;
+            if (y == 1 &amp;&amp; x == Garden.sideLength) {
+                if (worm == Garden.sideLength * Garden.sideLength) {
+                    Garden.vaihtoehdot[park]++;
+                }
+            } else if (upperCornersOK(x, y)) {
+                if (down(x, y)) routeCount(x + 1, y, worm + 1);
+                if (up(x,y)) routeCount(x - 1, y, worm + 1);
+            if (right(x, y)) routeCount(x, y + 1, worm + 1);
+                if (left(x, y)) routeCount(x, y - 1, worm + 1);
+            }
+        Garden.parks[park][x][y] = false;
+    }
+    
+    private boolean upperCornersOK(int x, int y) {
+        if (Garden.parks[park][x - 1][y + 1]
+                &amp;&amp; Garden.parks[park][x - 1][y] == false 
+                &amp;&amp; Garden.parks[park][x][y + 1] == false) return false;
+        if (Garden.parks[park][x - 1][y - 1] 
+                &amp;&amp; Garden.parks[park][x - 1][y] == false 
+                &amp;&amp; Garden.parks[park][x][y - 1] == false) return false;
+        if (Garden.parks[park][x + 1][y - 1] 
+                &amp;&amp; Garden.parks[park][x + 1][y] == false
+                &amp;&amp; Garden.parks[park][x][y - 1] == false) return false;
+        return !(Garden.parks[park][x + 1][y + 1] 
+                &amp;&amp; Garden.parks[park][x + 1][y] == false
+                &amp;&amp; Garden.parks[park][x][y + 1] == false);
+    }
+    
+    private boolean down(int x, int y) {
+        if (Garden.parks[park][x + 1][y]) return false;
+        return !(Garden.parks[park][x][y-1] &amp;&amp; Garden.parks[park][x][y+1]
+                &amp;&amp; Garden.parks[park][x - 1][y] == false);
+    }
+
+    private boolean up(int x, int y) {
+        if (Garden.parks[park][x - 1][y]) return false;
+        return !(Garden.parks[park][x][y-1] &amp;&amp; Garden.parks[park][x][y+1]
+                &amp;&amp; Garden.parks[park][x + 1][y] == false);
+    }
+
+    private boolean right(int x, int y) {
+        if (Garden.parks[park][x][y + 1]) return false;
+        return !(Garden.parks[park][x-1][y] &amp;&amp; Garden.parks[park][x+1][y]
+                &amp;&amp; Garden.parks[park][x][y - 1] == false);
+    }
+
+    private boolean left(int x, int y) {
+        if (Garden.parks[park][x][y - 1]) return false;
+        return !(Garden.parks[park][x-1][y] &amp;&amp; Garden.parks[park][x+1][y]
+                &amp;&amp; Garden.parks[park][x][y + 1] == false);
+    }
+}</code></pre>
+  <p>My final idea was to split the problem into two. I had been told that a dynamic solution would work better than recursive, but had trouble figuring out how to divide the problem into smaller problems. Finally I came with an idea of only checking the possible routes half the way to the middle of the park. If you look at the next picture with the solutions to the 4×4 grid above you can see how they are symmetrical. And here’s some illustration on how my mirroring idea works:</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/uolevi4.jpg" /></div>
+  <p>The pictures 1a-6a show the routes Uolevi has taken to get half way through the park. The pictures 1b-6b are those same routes mirrored using the center horizontal line. Blue squares are the possible directions you can take from those mirrored routes. The 4×4 grid had 8 solutions. You get the same number here, when you see which of the pictures 1a-6a connect with the next steps (blue squares) from pictures 1b-6b. In reality there would have been some more routes, but they would not find any mirrored squares to connect with, so they would be ignored.</p>
+  <p>Now if you calculate how many blue dots connect with 1a, you get one, 6b. For 2a it’s 5b and for 3a both 3b and 5b, but since they have overlapping visited squares, 5b is ignored. If you continue this way you get all the 8 possible routes (the image is missing 2 of them, as I ran out of space). One of the mirrored routes, 5b has two blue points and will generate two different solutions.</p>
+  <p>Implementing this solution took too much time and I couldn’t complete it. So I don’t know if it would have been any faster than the recursive solutions. Maybe I’ll complete it one day, if I have some extra time on my hands.</p>
+</div>
