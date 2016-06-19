@@ -2,6 +2,7 @@ import 'package:angular2/core.dart';
 
 import 'package:kipsu_fi/articles/article.dart';
 import 'package:kipsu_fi/articles/components/huffman_component.dart';
+import 'package:kipsu_fi/articles/components/our_project_component.dart';
 import 'package:kipsu_fi/articles/components/outrun_component.dart';
 import 'package:kipsu_fi/articles/components/university_entrance_component.dart';
 import 'package:kipsu_fi/articles/components/uolevi_component.dart';
@@ -9,6 +10,13 @@ import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 @Injectable()
 class ArticleService {
   final Map<String, Article> registered_articles = {
+
+    'OurProject': new Article(
+        'OurProject',
+        'It\'s Our Project',
+        'The importance of teamwork and self organizing teams.',
+        new DateTime(2015, 5, 7),
+        OurProjectComponent),
 
     'Huffman': new Article(
         'Huffman',
