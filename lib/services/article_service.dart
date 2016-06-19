@@ -1,6 +1,7 @@
 import 'package:angular2/core.dart';
 
 import 'package:kipsu_fi/articles/article.dart';
+import 'package:kipsu_fi/articles/components/huffman_component.dart';
 import 'package:kipsu_fi/articles/components/outrun_component.dart';
 import 'package:kipsu_fi/articles/components/university_entrance_component.dart';
 import 'package:kipsu_fi/articles/components/uolevi_component.dart';
@@ -8,6 +9,13 @@ import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 @Injectable()
 class ArticleService {
   final Map<String, Article> registered_articles = {
+
+    'Huffman': new Article(
+        'Huffman',
+        'Huffman Code',
+        'Data compression algorithm with variable length codes.',
+        new DateTime(2015, 2, 16),
+        HuffmanComponent),
 
     'Uolevi': new Article(
         'Uolevi',

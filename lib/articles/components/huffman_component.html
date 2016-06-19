@@ -1,0 +1,295 @@
+<article-metadata [article]="article"></article-metadata>
+
+<div class="content">
+  <p>I first read about Huffman’s algorithm from the great Lisp book <a href="//mitpress.mit.edu/books/structure-and-interpretation-computer-programs">Structure and Interpretation of Computer Programs</a>. The algorithm has a really interesting idea about storing data with prefixes based on the occurrences (weight) of the symbols being stored. The more times a symbol occurs in the data, the shorter the prefix is, causing the data compression volume to be larger.</p>
+  <p>The algorithm bases on having data about the occurrences of symbols. You can count the symbols or use “typical data”, for example when the data is English text, it’s most common character might typically be space, followed by <span class="val">e</span> or <span class="val">t</span>. After finding the occurrences, a binary tree is formed with each symbol as a leaf, ordered so that the most common characters are closer to the top of the tree. The prefix for each character is obtained by going down the tree and adding <span class="val">0</span> each time you need to turn left and <span class="val">1</span> to right (or the other way around, as long as it’s consistent). This causes the most common characters having shorter prefixes and bigger compression rate.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/huffman2.jpg" /></div>
+  <p>The image displays a tree created from text <strong>“pakattavaa tekstii”</strong>. <span class="val">A</span> is the most common characters, occurring 5 times, following by <span class="val">T</span> 4 times. <span class="val">I</span> and <span class="val">K</span> appear twice while others occur just once. So we get a occurences list of <span class="val">{A:5, T:4, I:2, K:2, S:1, V:1, E:1, P:1, :1}</span>. These are set as the weights of the leafs (blue in the image). Parent nodes also have a weight based on their children.</p>
+  <p>We start creating the tree from the bottom of the occurrences list. The first node will have <span class="val">P</span> and space as it’s leafs, the second <span class="val">E</span> and the just created node. The parent node of <span class="val">E</span> has a weight of 3, which is greater than the combined weight of <span class="val">S</span> and <span class="val">V</span>, so we create a new parent node from them with weight of 2. We always try to combine the smallest possible weight we can get for the parent node, so I is combined with <span class="val">S</span> and <span class="val">V</span> to create weight 4 and <span class="val">K</span> with <span class="val">E</span>, <span class="val">P</span> and <span class="val">space</span> and so on. Finally when we have no new symbols, we combine our parent nodes to create a tree with a total weight of 18.</p>
+  <div class="photo"><img src="/packages/kipsu_fi/assets/articles/huffman3.jpg" /></div>
+  <p>Now that we have formed the tree, we can assign prefixes based on the symbols locations down the tree. Each edge we travel down right adds 1 to the prefix and 0 for left. <span class="val">A</span> is one edge right, then one left, so it’s assigned a prefix 10, while I is one left, then right and left again so the prefix is 010.</p>
+  <p>Using this type of prefix assignment, we can be sure that no prefix starts with a prefix of another symbol. This is why we don’t need any separator between prefixes, even though they are not all of the same length. If you have a code 10110010 you can decode it easily by starting from the root and going down until you land in one of the leafs. 10 will take you to <span class="val">A</span>, 110 to <span class="val">E</span> and 010 ti <span class="val">I</span>, so the text behind that encoding is unambiguously <strong>“aki”</strong>.</p>
+  <p>The text “pakattavaa tekstii” with the Huffman tree drawn above is about 36% of the size it would be with UTF-8 encoding. The more occurrences of the same letters there is the better the algorithm works. I practiced implementing it with Java and Clojure below.</p>
+
+  <h3>Implementations</h3>
+
+  <p>I have implementation examples here in Java and Clojure. Let's first go with Clojure:</p>
+  <pre class="prettyprint linenums lang-clj"><code>(ns clojure-tests.huffman)
+
+(defn leaf? [node]
+  (= :leaf (first node)))
+
+(defn weight [node]
+  (nth node 2))
+
+(defn make-leaf [value weight]
+  (seq [:leaf value weight]))
+
+(defn leaf-value [leaf]
+  (second leaf))
+
+(defn make-node [left right]
+  (seq [(seq [left right (+ (weight left) (weight right))])]))
+
+(defn left-branch [node]
+  (first node))
+
+(defn right-branch [node]
+  (second node))
+
+(defn new-leaf-to-beginning? [next-weight tree]
+  (or (empty? tree) (and next-weight (&lt; next-weight (weight (first tree))))))
+
+(defn add-node-to-beginning [node-fn]
+  (node-fn))
+
+(defn add-node-to-end [node-fn tree]
+  (apply conj (node-fn) (rest tree)))
+
+(defn add-to-tree [tree [val1 weight1] [val2 weight2]]
+  (let [new-leaf (fn [] (make-leaf val1 weight1))
+        new-node (fn [] (make-node (first tree) (new-leaf)))]
+    (cond (new-leaf-to-beginning? weight2 tree) (cons (new-leaf) tree)
+          (empty? (rest tree)) (add-node-to-beginning new-node)
+          :else (add-node-to-end new-node tree))))
+
+(defn join-tree-branches [tree]
+  (let [new-node (fn [] (make-node (first tree) (second tree)))]
+    (cond (= 1 (count tree)) (first tree)
+          (= 2 (count tree)) (first (new-node))
+          :else (recur (add-node-to-end new-node (rest tree))))))
+
+(defn add-freqs-to-tree [tree freqs]
+  (if (empty? freqs) (join-tree-branches tree)
+      (recur
+        (add-to-tree tree (first freqs) (second freqs))
+        (rest freqs))))
+
+(defn compare-freqs [freqs key1 key2]
+  (compare [(get freqs key1) key1]
+           [(get freqs key2) key2]))
+
+(defn string-frequencies [string]
+  (let [freqs (frequencies string)]
+    (into (sorted-map-by (partial compare-freqs freqs)) freqs)))
+
+(defn find-code-for [node mapping code]
+  (if (leaf? node) (hash-map (leaf-value node) code)
+      (conj (find-code-for (left-branch node) mapping (conj code 0))
+            (find-code-for (right-branch node) {} (conj code 1)))))
+
+(defn symbol-codes [tree]
+  (find-code-for tree {} []))
+
+(defn make-tree [freqs]
+  (let [tree (add-freqs-to-tree '() freqs)]
+    {:tree tree
+     :codes (symbol-codes tree)}))
+
+
+(defn add-char-to [encoding codes character]
+  (apply conj encoding (get codes character)))
+
+(defn encode-characters [string codes encoding]
+  (if (empty? string) encoding
+      (recur (rest string)
+             codes
+             (add-char-to encoding codes (first string)))))
+
+(defn encode [string tree]
+  (encode-characters string (:codes tree) []))
+
+(defn decode-leaf [leaf text]
+  (conj text (leaf-value leaf)))
+
+(defn encoded-text-as-string [text]
+  (apply str text))
+
+(defn decoded-text [enc root node text]
+  (cond (leaf? node) (recur enc root root (decode-leaf node text))
+        (empty? enc) (encoded-text-as-string text)
+        (zero? (first enc)) (recur (rest enc) root (left-branch node) text)
+        :else (recur (rest enc) root (right-branch node) text)))
+
+(defn decode [encoding tree]
+  (decoded-text encoding (:tree tree) (:tree tree) []))
+
+(def text "pakattavaa tekstii")
+(def tree (make-tree (string-frequencies text)))
+(def encoded-text (encode text tree))
+
+(println encoded-text)
+(println (decode encoded-text tree))</code></pre>
+
+  <p>Java version:</p>
+  <pre class="prettyprint linenums"><code>public class Huffman {
+    public static void main (String[] args) throws java.lang.Exception {
+        String text = args.length &gt; 0 ? args[0] : "pakattavaa tekstii";
+        InstanceCounter ic = new InstanceCounter();
+        HuffmanTree tree = new HuffmanTree(ic.analyze(text));
+        String encodedText = tree.encode(text);
+        System.out.println(encodedText);
+        System.out.println(tree.decode(encodedText));
+    }
+}
+
+class InstanceCounter {
+    public Queue analyze(String input) {
+        Map characters = countCharacters(input);
+        return charactersByOccurence(characters);
+    }
+
+    private Map countCharacters(String input) {
+        Map characters = new HashMap&lt;&gt;();
+        for (int i = 0; i &lt; input.length(); i++) {
+            char key = input.charAt(i);
+            if (!characters.containsKey(key)) characters.put(key, 0);
+            characters.put(key, characters.get(key) + 1);
+        }
+        return characters;
+    }
+
+    private Queue charactersByOccurence(Map chars) {
+        Queue queue = new PriorityQueue&lt;&gt;();
+        for (char character : chars.keySet()) {
+            queue.add(new Node(character, chars.get(character)));
+        }
+            return queue;
+    }
+}
+
+class HuffmanTree {
+    private Map characterCodes;
+    private Node root;
+
+    public HuffmanTree(Queue charCounts) {
+        root = charCounts.poll();
+        createRestOfTheTree(charCounts);
+        characterCodes = new HashMap&lt;&gt;();
+        assignCodesToCharacters(root, "");
+    }
+
+    public Node getRoot() {
+        return root;
+    }
+
+    public String encode(String text) {
+        StringBuilder encodedText = new StringBuilder();
+        for (int i = 0; i &lt; text.length(); i++) {
+            encodedText.append(characterCodes.get(text.charAt(i)));
+        }
+        return encodedText.toString();
+    }
+
+    public String decode(String encodedText) {
+        StringBuilder decodedText = new StringBuilder();
+        Node currentNode = root;
+        for (int i = 0; i &lt; encodedText.length(); i++) {
+            currentNode = currentNode.moveTowards(encodedText.charAt(i));
+            Character value = currentNode.value();
+            if (value != null) {
+                decodedText.append(value);
+                currentNode = root;
+            }
+        }
+        return decodedText.toString();
+    }
+
+    private void createRestOfTheTree(Queue right) {
+        Queue left = new PriorityQueue&lt;&gt;();
+        while (!left.isEmpty() || !right.isEmpty()) {
+            balanceSides(right, left);
+            changeRoot(right, left);
+        }
+    }
+
+    private void balanceSides(Queue right, Queue left) {
+        if (!right.isEmpty() &amp;&amp; right.peek().weight() &lt; root.weight()) {
+            left.add(root);
+            root = right.poll();
+        } else if (!left.isEmpty() &amp;&amp; left.peek().weight() &lt; root.weight()) {
+            right.add(root);
+            root = left.poll();
+        }
+    }
+
+    private void changeRoot(Queue right, Queue left) {
+        if (left.isEmpty()) {
+            root = new Node(root, right.poll());
+        } else if (right.isEmpty()) {
+            root = new Node(root, left.poll());
+        } else {
+            if (right.peek().weight() &lt; left.peek().weight()) {
+                root = new Node(root, right.poll());
+            } else {
+                root = new Node(root, left.poll());
+            }
+        }
+    }
+
+    private void assignCodesToCharacters(Node node, String code) {
+        Node leftChild = node.leftChild();
+        Node rightChild = node.rightChild();
+        if (leftChild != null) {
+            assignCodesToCharacters(leftChild, code + "0");
+            assignCodesToCharacters(rightChild, code + "1");
+        } else {
+            node.setCode(code);
+            characterCodes.put(node.value(), code);
+        }
+    }
+}
+
+class Node implements Comparable {
+    private Character value;
+    private int weight;
+    private Node leftChild;
+    private Node rightChild;
+    private String code;
+
+    public Node(char value, int weight) {
+        this.value = value;
+        this.weight = weight;
+    }
+
+    public Node(Node leftChild, Node rightChild) {
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
+        this.weight = leftChild.weight + rightChild.weight;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Node moveTowards(char c) {
+        if (c == '0') {
+            return leftChild;
+        } else {
+            return rightChild;
+        }
+    }
+
+    public Character value() {
+        return value;
+    }
+
+    public int weight() {
+        return weight;
+    }
+
+    public Node leftChild() {
+        return leftChild;
+    }
+
+    public Node rightChild() {
+        return rightChild;
+    }
+
+    @Override
+    public int compareTo(Node other) {
+        return this.weight - other.weight;
+    }
+}</code></pre>
+
+</div>

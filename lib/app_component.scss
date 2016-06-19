@@ -2,6 +2,7 @@ $border-color: #eee;
 $link-hover-color: violet;
 $social-media-fill-color: #828282;
 $text-highlight-color: #844b99;
+$value-color: indigo;
 
 .nav {
   border-bottom: 1px solid $border-color;
@@ -67,6 +68,10 @@ $text-highlight-color: #844b99;
     font-size: 18px;
     line-height: 28px;
     padding: 5px 0;
+
+    .val {
+      color: $value-color;
+    }
   }
 }
 
