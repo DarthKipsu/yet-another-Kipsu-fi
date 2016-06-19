@@ -27,9 +27,8 @@ class OutrunComponent implements OnInit {
     article = _articleService.getArticle(_routeParams.get('article'));
     _titleService.title = article.title;
     _titleService.subtitle = article.subtitle;
-    JsObject hljs = context['hljs'];
-    final codeBlocks = querySelectorAll('pre code');
-    codeBlocks.forEach((block) => hljs.callMethod('highlightBlock', [block]));
+    JsObject PR = context['PR'];
+    PR.callMethod('prettyPrint');
   }
 }
 

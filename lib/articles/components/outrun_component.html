@@ -11,7 +11,7 @@
   <p>The route finding could be improved by taking into consideration any possible additional routes or forks in the route, that add up to the same amount of likes. But I left it out, because we went to see the new Captain America movie and I didn’t want to leave the program hanging for this week.</p>
   <p>I liked this task a lot. I’ve always enjoyed mathematics. Maybe I should specialize in data processing when I begin my programming studies.</p>
   <p>You can see the JavaScript implementation below:</p>
-  <pre><code class="JavaScript">var fs = require('fs')
+  <pre class="prettyprint lang-js linenums"><code>var fs = require('fs')
 fs.readFile(process.argv[2], {'encoding': 'UTF-8'}, function (err, data) {
 	if (err) throw err
 	
