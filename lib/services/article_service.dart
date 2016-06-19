@@ -2,6 +2,7 @@ import 'package:angular2/core.dart';
 
 import 'package:kipsu_fi/articles/article.dart';
 import 'package:kipsu_fi/articles/components/huffman_component.dart';
+import 'package:kipsu_fi/articles/components/new_black_component.dart';
 import 'package:kipsu_fi/articles/components/our_project_component.dart';
 import 'package:kipsu_fi/articles/components/outrun_component.dart';
 import 'package:kipsu_fi/articles/components/simulating_ui_component.dart';
@@ -12,18 +13,25 @@ import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 class ArticleService {
   final Map<String, Article> registered_articles = {
 
+    'NewBlack': new Article(
+        'NewBlack',
+        '#333 is the new BLACK',
+        'Some guidlines for robust visual designs.',
+        new DateTime(2015, 5, 22),
+        NewBlackComponent),
+
     'SimulatingUserInterfaces': new Article(
         'SimulatingUserInterfaces',
         'Simulating User Interfaces',
         'Using simulation based user interface design.',
-        new DateTime(2015, 5, 23),
+        new DateTime(2015, 3, 23),
         SimulatingUIComponent),
 
     'OurProject': new Article(
         'OurProject',
         'It\'s Our Project',
         'The importance of teamwork and self organizing teams.',
-        new DateTime(2015, 5, 7),
+        new DateTime(2015, 3, 7),
         OurProjectComponent),
 
     'Huffman': new Article(
