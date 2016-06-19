@@ -1,6 +1,7 @@
 import 'package:angular2/core.dart';
 
 import 'package:kipsu_fi/articles/article.dart';
+import 'package:kipsu_fi/articles/components/academy_component.dart';
 import 'package:kipsu_fi/articles/components/huffman_component.dart';
 import 'package:kipsu_fi/articles/components/new_black_component.dart';
 import 'package:kipsu_fi/articles/components/our_project_component.dart';
@@ -12,6 +13,13 @@ import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 @Injectable()
 class ArticleService {
   final Map<String, Article> registered_articles = {
+
+    'Academy': new Article(
+        'Academy',
+        'Reaktor Academy',
+        'Summary of Reaktor Academy mentoring program for information technology and software service consultant work.',
+        new DateTime(2015, 6, 7),
+        AcademyComponent),
 
     'NewBlack': new Article(
         'NewBlack',
