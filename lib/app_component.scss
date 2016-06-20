@@ -53,6 +53,17 @@ $value-color: indigo;
 :host /deep/ .content {
   margin: 16px 0 20px;
 
+  .photo,
+  .photo-large,
+  .video{
+    padding:16px 0 22px;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
   h3 {
     color: $text-highlight-color;
     font-size: 22px;
