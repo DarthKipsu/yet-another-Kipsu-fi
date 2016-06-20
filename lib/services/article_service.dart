@@ -4,6 +4,7 @@ import 'package:kipsu_fi/articles/article.dart';
 import 'package:kipsu_fi/articles/components/academy_component.dart';
 import 'package:kipsu_fi/articles/components/futu_component.dart';
 import 'package:kipsu_fi/articles/components/huffman_component.dart';
+import 'package:kipsu_fi/articles/components/machine_learning_intro_component.dart';
 import 'package:kipsu_fi/articles/components/matrices_component.dart';
 import 'package:kipsu_fi/articles/components/new_black_component.dart';
 import 'package:kipsu_fi/articles/components/our_project_component.dart';
@@ -15,6 +16,13 @@ import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 @Injectable()
 class ArticleService {
   final Map<String, Article> registered_articles = {
+
+    'MavhineLearningIntro': new Article(
+        'MavhineLearningIntro',
+        'Introduction to Machine Learning',
+        'A very brief introduction to the main concept of machine learning.',
+        new DateTime(2015, 12, 20),
+        MachineLearningIntroComponent),
 
     'MatricesForProgramming': new Article(
         'MatricesForProgramming',
