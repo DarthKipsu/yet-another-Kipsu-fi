@@ -9,6 +9,7 @@ import 'package:kipsu_fi/articles/components/matrices_component.dart';
 import 'package:kipsu_fi/articles/components/new_black_component.dart';
 import 'package:kipsu_fi/articles/components/our_project_component.dart';
 import 'package:kipsu_fi/articles/components/outrun_component.dart';
+import 'package:kipsu_fi/articles/components/perceptron_component.dart';
 import 'package:kipsu_fi/articles/components/simulating_ui_component.dart';
 import 'package:kipsu_fi/articles/components/university_entrance_component.dart';
 import 'package:kipsu_fi/articles/components/uolevi_component.dart';
@@ -17,8 +18,15 @@ import 'package:kipsu_fi/articles/components/uolevi_component.dart';
 class ArticleService {
   final Map<String, Article> registered_articles = {
 
-    'MavhineLearningIntro': new Article(
-        'MavhineLearningIntro',
+    'Perceptron': new Article(
+        'Perceptron',
+        'Perceptron',
+        'Basic binary linear classification algorithm for supervised machine learning, with multiclass classification example.',
+        new DateTime(2016, 2, 7),
+        PerceptronComponent),
+
+    'MachineLearningIntro': new Article(
+        'MachineLearningIntro',
         'Introduction to Machine Learning',
         'A very brief introduction to the main concept of machine learning.',
         new DateTime(2015, 12, 20),
