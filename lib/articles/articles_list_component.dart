@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -20,6 +22,7 @@ class ArticleListComponent implements OnActivate {
   routerOnActivate(next, prev) {
     _titleService.title = "Articles";
     _titleService.subtitle = "About computer science, life and everything.";
+    window.scrollTo(0,0);
   }
 
   List<Article> get articles => _articleService.registered_articles.values;

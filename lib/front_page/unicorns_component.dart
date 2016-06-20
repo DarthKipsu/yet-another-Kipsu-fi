@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -15,5 +17,6 @@ class UnicornsComponent implements OnActivate {
   routerOnActivate(next, prev) {
     _titleService.title = "darth.kipsu.fi";
     _titleService.subtitle = 'Presenting you with my reality.';
+    window.scrollTo(0,0);
   }
 }

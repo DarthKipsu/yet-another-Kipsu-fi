@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -26,6 +28,7 @@ class AboutComponent implements OnActivate {
   routerOnActivate(next, prev) {
     _titleService.title = "About Me";
     _titleService.subtitle = "Find out more about who I am.";
+    window.scrollTo(0,0);
   }
 
   String getSrcFor(String link) {

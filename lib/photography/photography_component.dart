@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -15,6 +17,7 @@ class PhotographyComponent implements OnActivate {
   routerOnActivate(next, prev) {
     _titleService.title = "Photography";
     _titleService.subtitle = "See the world through my eyes.";
+    window.scrollTo(0,0);
   }
 }
 

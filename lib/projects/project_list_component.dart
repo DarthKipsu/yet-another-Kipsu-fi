@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -20,6 +22,7 @@ class ProjectListComponent implements OnActivate {
   routerOnActivate(next, prev) {
     _titleService.title = "Projects";
     _titleService.subtitle = "The best way to learn a new language or a concept.";
+    window.scrollTo(0,0);
   }
 
   List<Project> get projects => _projectService.registered_projects.values;

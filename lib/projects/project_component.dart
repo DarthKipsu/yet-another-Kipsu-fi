@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -20,6 +22,7 @@ class ProjectComponent implements OnInit {
     final project = _projectService.getProject(_routeParams.get('project'));
     _componentResolver.resolveComponent(project.component)
         .then((factory) => _vcRef.createComponent(factory));
+    window.scrollTo(0,0);
   }
 }
 

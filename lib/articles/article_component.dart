@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -19,6 +21,7 @@ class ArticleComponent implements OnInit {
     final article = _articleService.getArticle(_routeParams.get('article'));
     _componentResolver.resolveComponent(article.component)
         .then((factory) => _vcRef.createComponent(factory));
+    window.scrollTo(0,0);
   }
 }
 
