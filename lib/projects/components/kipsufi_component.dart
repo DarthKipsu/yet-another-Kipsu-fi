@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'kipsufi',
     templateUrl: 'kipsufi_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class KipsuFiComponent implements OnInit {
   final TitleService _titleService;

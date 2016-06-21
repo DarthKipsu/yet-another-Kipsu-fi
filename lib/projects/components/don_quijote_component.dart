@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'don-quijote',
     templateUrl: 'don_quijote_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class DonQuijoteComponent implements OnInit {
   final TitleService _titleService;

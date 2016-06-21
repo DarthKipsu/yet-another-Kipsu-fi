@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'academy',
     templateUrl: 'academy_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class AcademyComponent implements OnInit {
   final TitleService _titleService;

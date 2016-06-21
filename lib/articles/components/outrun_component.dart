@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'outrun',
     templateUrl: 'outrun_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class OutrunComponent implements OnInit {
   final TitleService _titleService;

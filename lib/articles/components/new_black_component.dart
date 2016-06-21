@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'new-black',
     templateUrl: 'new_black_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class NewBlackComponent implements OnInit {
   final TitleService _titleService;

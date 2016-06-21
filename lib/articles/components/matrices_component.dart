@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'matrices-for-programming',
     templateUrl: 'matrices_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class MatricesComponent implements OnInit {
   final TitleService _titleService;

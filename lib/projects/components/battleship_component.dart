@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'battleship',
     templateUrl: 'battleship_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class BattleshipComponent implements OnInit {
   final TitleService _titleService;

@@ -1,0 +1,55 @@
+$border-color: #eee;
+$text-highlight-color: #844b99;
+$value-color: indigo;
+
+.content {
+  margin: 16px 0 20px;
+
+  .photo,
+  .photo-large,
+  .video{
+    padding:16px 0 22px;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  h3 {
+    color: $text-highlight-color;
+    font-size: 22px;
+    margin-top: 50px;
+  }
+
+  hr {
+    color: $border-color;
+    height: 1px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 28px;
+    padding: 5px 0;
+
+    .val {
+      color: $value-color;
+    }
+  }
+    
+  pre {
+    border: none;
+    border-radius: 0;
+    padding: 10px 10px 15px 0;
+  
+    -webkit-tab-size: 4;
+    -moz-tab-size: 4;
+    -ms-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    &.nolinenums {
+      padding: 10px 10px 15px 15px;
+    }
+  }
+}

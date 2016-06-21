@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'futu-camp',
     templateUrl: 'futu_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class FutuComponent implements OnInit {
   final TitleService _titleService;

@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'university-entrance',
     templateUrl: 'university_entrance_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class UniversityEntranceComponent implements OnInit {
   final TitleService _titleService;

@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'bachelors-thesis',
     templateUrl: 'bachelors_thesis_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class BachelorsThesisComponent implements OnInit {
   final TitleService _titleService;

@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'abandon-all-hope',
     templateUrl: 'abandon_all_hope_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class AbandonAllHopeComponent implements OnInit {
   final TitleService _titleService;

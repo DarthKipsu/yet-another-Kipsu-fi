@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'machine-learning-intro',
     templateUrl: 'machine_learning_intro_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class MachineLearningIntroComponent implements OnInit {
   final TitleService _titleService;

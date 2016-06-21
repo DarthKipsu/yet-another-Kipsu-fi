@@ -12,6 +12,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'simulating-ui',
     templateUrl: 'simulating_ui_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ArticleMetadataComponent])
 class SimulatingUIComponent implements OnInit {
   final TitleService _titleService;

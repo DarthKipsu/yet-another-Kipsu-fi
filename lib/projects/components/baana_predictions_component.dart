@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'baana-predictions',
     templateUrl: 'baana_predictions_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class BaanaPredictionsComponent implements OnInit {
   final TitleService _titleService;

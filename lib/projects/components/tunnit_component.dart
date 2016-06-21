@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'tunnit',
     templateUrl: 'tunnit_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class TunnitComponent implements OnInit {
   final TitleService _titleService;

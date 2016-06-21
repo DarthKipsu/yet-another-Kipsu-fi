@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'rps-robot',
     templateUrl: 'rpsrobot_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class RPSRobotComponent implements OnInit {
   final TitleService _titleService;

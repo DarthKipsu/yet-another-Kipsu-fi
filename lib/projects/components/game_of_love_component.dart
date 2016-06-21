@@ -10,6 +10,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'game-of-love',
     templateUrl: 'game_of_love_component.html',
+    styleUrls: const ['../../content.css'],
     directives: const [ProjectMetadataComponent])
 class GameOfLoveComponent implements OnInit {
   final TitleService _titleService;

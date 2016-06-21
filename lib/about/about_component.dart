@@ -8,7 +8,7 @@ import 'package:kipsu_fi/services/title_service.dart';
 @Component(
     selector: 'about-me',
     templateUrl: 'about_component.html',
-    styleUrls: const ['about_component.css'])
+    styleUrls: const ['about_component.css', '../content.css'])
 class AboutComponent implements OnActivate {
   final String coverPicUrl = '/packages/kipsu_fi/assets/about.jpg';
   final String name = 'Verna Koskinen';
