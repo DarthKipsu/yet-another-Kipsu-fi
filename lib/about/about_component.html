@@ -6,42 +6,46 @@
   <p>I have a previous degree in environmental sciences, but begun studying programming just before Christmas in 2013 and completely fell for it! I’m still exploring the field and having fun learning new things. Seems like in programming, learning new can never stop - how fun is that! I like problem solving and math, so this is definitely my thing.</p>
 
   <p>In my free time, when not learning about programming, I like to get outside with my dog and spouse and go walking in the forest, hiking or cycling. Nature is really important to me and I think caring for the environment and spending time in the nature is one of the best ways to keep ones mind at ease.</p>
+
+  <h3>Contact information</h3>
+
+  <div class="card">
+    <table class="table table-condensed table-hover">
+      <tbody>
+        <tr>
+          <td>Name:</td><td>{{name}}</td>
+        </tr>
+        <tr>
+          <td>Email:</td><td>{{email}}</td>
+        </tr>
+        <tr>
+          <td>Phone:</td><td>{{phone}}</td>
+        </tr>
+        <tr>
+          <td>Address:</td><td>{{address}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-condensed table-hover">
+      <tbody>
+        <tr>
+          <td>Website:</td>
+          <td><a href="{{getSrcFor(website)}}">{{website}}</a></td>
+        </tr>
+        <tr>
+          <td>GitHub:</td>
+          <td><a href="{{getSrcFor(github)}}">{{username}}</a></td>
+        </tr>
+        <tr>
+          <td>LinkedIn:</td>
+          <td><a href="{{getSrcFor(linkedin)}}">{{name}}</a></td>
+        </tr>
+        <tr>
+          <td>Facebook:</td>
+          <td><a href="{{getSrcFor(facebook)}}">{{name}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<table class="table table-condensed table-hover table-bordered">
-  <tbody>
-    <tr>
-      <td>Name:</td><td>{{name}}</td>
-    </tr>
-    <tr>
-      <td>Email:</td><td>{{email}}</td>
-    </tr>
-    <tr>
-      <td>Phone:</td><td>{{phone}}</td>
-    </tr>
-    <tr>
-      <td>Address:</td><td>{{address}}</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="table table-condensed table-hover table-bordered">
-  <tbody>
-    <tr>
-      <td>Website:</td>
-      <td><a href="{{getSrcFor(website)}}">{{website}}</a></td>
-    </tr>
-    <tr>
-      <td>GitHub:</td>
-      <td><a href="{{getSrcFor(github)}}">{{username}}</a></td>
-    </tr>
-    <tr>
-      <td>LinkedIn:</td>
-      <td><a href="{{getSrcFor(linkedin)}}">{{name}}</a></td>
-    </tr>
-    <tr>
-      <td>Facebook:</td>
-      <td><a href="{{getSrcFor(facebook)}}">{{name}}</a></td>
-    </tr>
-  </tbody>
-</table>

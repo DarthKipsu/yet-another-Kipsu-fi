@@ -1,5 +1,7 @@
+$shadow-color: #ddd;
+
 .photo-large {
-  
+
   img {
     width: 100%;
   }
@@ -9,12 +11,22 @@ table {
   font-size: 18px;
 
   td {
+    border-top: none;
     padding: 8px;
+
+    a {
+      cursor: pointer;
+    }
   }
 
   td:first-child {
     font-weight: 600;
     width: 130px;
   }
+}
+
+.card {
+  box-shadow: 1px 2px 4px $shadow-color;
+  margin: 16px 0;
 }
 
