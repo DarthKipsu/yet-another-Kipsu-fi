@@ -9,11 +9,16 @@ import 'package:kipsu_fi/about/country.dart';
     selector: 'world-map',
     templateUrl: 'world_component.html',
     styleUrls: const ['world_component.css'])
-class WorldComponent implements OnActivate {
+class WorldComponent implements OnInit {
 
-  routerOnActivate(next, prev) {
-    print(visited_countries);
+  ngOnInit() {
+    visited_countries.forEach((country) {
+      final path = document.querySelector('#${country.id}');
+      if (path != null) path.classes.add('visited');
+    });
   }
+
+  int get count => visited_countries.length;
 
   final List<Country> visited_countries = [
     new Country("FI", "Finland", [
@@ -115,6 +120,10 @@ class WorldComponent implements OnActivate {
         },
         {
           "arrived": new DateTime(2016, 6, 5),
+          "left": new DateTime(2016, 6, 25)
+        },
+        {
+          "arrived": new DateTime(2016, 6, 26),
           "left": new DateTime.now()
         }
     ]),
@@ -216,6 +225,12 @@ class WorldComponent implements OnActivate {
         {
           "arrived": new DateTime(2016, 6, 4),
           "left": new DateTime(2016, 6, 5)
+        }
+    ]),
+    new Country("FR", "France", [
+        {
+          "arrived": new DateTime(2016, 6, 25),
+          "left": new DateTime(2016, 6, 26)
         }
     ])
   ];

@@ -9,4 +9,15 @@ svg {
     stroke-opacity: 1;
     stroke-width: 0.5;
   }
+
+  .visited {
+    fill: green;
+  }
+}
+
+div {
+  color: green;
+  text-align: center;
+  padding: 0 16px 12px;
+  width: 100%;
 }
