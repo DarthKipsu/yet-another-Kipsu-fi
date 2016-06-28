@@ -14,11 +14,20 @@ class WorldComponent implements OnInit {
   ngOnInit() {
     visited_countries.forEach((country) {
       final path = document.querySelector('#${country.id}');
-      if (path != null) path.classes.add('visited');
+      if (path != null) {
+        path.classes.add('visited');
+        path.onMouseOver.listen(_tooltipOpacity(country.id, 1));
+        path.onMouseLeave.listen(_tooltipOpacity(country.id, 0));
+      }
     });
   }
 
   int get count => visited_countries.length;
+
+  dynamic _tooltipOpacity(String id, int opacity) => (_) {
+    final tooltip = document.querySelector('.tooltip.$id');
+    tooltip.style.opacity = '$opacity';
+  };
 
   final List<Country> visited_countries = [
     new Country("FI", "Finland", [
