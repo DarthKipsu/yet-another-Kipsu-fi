@@ -35,7 +35,7 @@ class WorldComponent implements OnInit {
       final days = country.visited.fold(0,
           (prevValue, c) => prevValue + c['left'].difference(c['arrived']).inDays);
       if (days < 1) return 'less than one day';
-      if (days < 6) return '$days days';
+      if (days < 7) return '$days days';
       if (days < 365) {
         final weeks = (days / 7).floor();
         final extraDays = days % 7;
