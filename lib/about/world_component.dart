@@ -26,8 +26,28 @@ class WorldComponent implements OnInit {
 
   dynamic _tooltipOpacity(String id, int opacity) => (_) {
     final tooltip = document.querySelector('.tooltip.$id');
-    tooltip.style.opacity = '$opacity';
+    if (tooltip != null) tooltip.style.opacity = '$opacity';
   };
+
+  String timeSpent(String countryId) {
+    final country = visited_countries.where((c) => c.id == countryId).first;
+    if (country != null) {
+      final days = country.visited.fold(0,
+          (prevValue, c) => prevValue + c['left'].difference(c['arrived']).inDays);
+      if (days < 1) return 'less than one day';
+      if (days < 6) return '$days days';
+      if (days < 365) {
+        final weeks = (days / 7).floor();
+        final extraDays = days % 7;
+        if (extraDays == 0) return '$weeks weeks';
+        return '$weeks weeks and $extraDays days';
+      }
+      final years = (days / 365).floor();
+      final weeks = (days % 365 / 7).floor();
+      return weeks < 1 ? '$years years' : '$years years and $weeks weeks';
+    }
+    return 'unknown time';
+  }
 
   final List<Country> visited_countries = [
     new Country("FI", "Finland", [

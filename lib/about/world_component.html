@@ -182,10 +182,11 @@
   </g>
   <text *ngFor="let country of visited_countries"
       x="5"
-      y="600"
+      y="580"
       class="tooltip"
       [ngClass]="country.id">
-    {{country.name}}: {{country.visited.length}} visits
+    <tspan x="0" dy="24px">{{country.name}}: {{country.visited.length}} visits.</tspan>
+    <tspan x="0" dy="24px">Stayed for {{timeSpent(country.id)}} in total.</tspan>
   </text>
 </svg>
 <div>{{count}} countries in total. Still many more to go... :)</div>
