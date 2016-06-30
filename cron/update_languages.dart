@@ -10,18 +10,37 @@ void main() {
           "token ${Platform.environment['KIPSUFI_GITHUB_TOKEN']}");
       return request.close();
     })
-  .then((HttpClientResponse response) {
-    final contents = new StringBuffer();
-    response.transform(UTF8.decoder).listen((String data) => contents.write(data),
-        onDone: () => onRepositoriesLoaded(contents.toString()));
-    httpClient.close();
-  });
+    .then((HttpClientResponse response) {
+      final contents = new StringBuffer();
+      response.transform(UTF8.decoder).listen((String data) => contents.write(data),
+          onDone: () => onRepositoriesLoaded(contents.toString()));
+      httpClient.close();
+    });
 }
 
 void onRepositoriesLoaded(String response) {
   final data = JSON.decode(response);
   data.forEach((d) {
-    print('https://api.github.com/repos/${d['full_name']}/languages');
+    final languagePath = 'https://api.github.com/repos/${d['full_name']}/languages';
+    final httpClient = new HttpClient();
+    httpClient.getUrl(Uri.parse(languagePath))
+      .then((HttpClientRequest request) {
+        request.headers.add("authorization",
+            "token ${Platform.environment['KIPSUFI_GITHUB_TOKEN']}");
+        return request.close();
+      })
+      .then((HttpClientResponse response) {
+        final contents = new StringBuffer();
+        response.transform(UTF8.decoder).listen((String data) => contents.write(data),
+            onDone: () => onLanguageDataLoaded(contents.toString()));
+        httpClient.close();
+      });
+
   });
+}
+
+void onLanguageDataLoaded(String response) {
+  final data = JSON.decode(response);
+  data.keys.forEach((k) => print('$k: ${data[k]}'));
 }
 
