@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
+import 'package:kipsu_fi/about/my_languages_component.dart';
 import 'package:kipsu_fi/about/world_component.dart';
 import 'package:kipsu_fi/services/title_service.dart';
 
@@ -10,7 +11,7 @@ import 'package:kipsu_fi/services/title_service.dart';
     selector: 'about-me',
     templateUrl: 'about_component.html',
     styleUrls: const ['about_component.css', '../content.css'],
-    directives: const [WorldComponent])
+    directives: const [MyLanguagesComponent, WorldComponent])
 class AboutComponent implements OnActivate {
   final String coverPicUrl = '/packages/kipsu_fi/assets/about.jpg';
   final String name = 'Verna Koskinen';
