@@ -46,12 +46,6 @@ void onLanguageDataLoaded(String response, Map languages) {
     if (languages[k] == null) languages[k] = 0;
     languages[k] += v;
   });
-  writeResultsToFile(languages);
-}
-
-void writeResultsToFile(Map languages) {
-  File file = new File('languages').openWrite();
-  languages.forEach((k, v) => file.write('$k $v\n'));
-  file.close();
+  new File('languages').writeAsString(JSON.encode(languages));
 }
 

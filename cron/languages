@@ -1,18 +1,1 @@
-Java 1853669
-JavaScript 3770146
-CSS 3219898
-Clojure 161304
-HTML 805879
-Ruby 315381
-Python 126288
-Shell 995
-PHP 420
-ApacheConf 85
-XML 2731
-Perl 716
-CoffeeScript 2322
-Scala 19943
-C 94102
-Makefile 12284
-C++ 135
-Dart 55709
+{"JavaScript":3770146,"HTML":805879,"CSS":3219898,"Clojure":161304,"PHP":420,"ApacheConf":85,"Ruby":315381,"Python":126288,"Shell":995,"Java":1853669,"Scala":19943,"CoffeeScript":2322,"C":94102,"Makefile":12284,"C++":135,"Perl":716,"XML":2731,"Dart":55028}
