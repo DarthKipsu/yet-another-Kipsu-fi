@@ -19,6 +19,7 @@ void main() {
 }
 
 void onRepositoriesLoaded(String response) {
+  final languages = {};
   final data = JSON.decode(response);
   data.forEach((d) {
     final languagePath = 'https://api.github.com/repos/${d['full_name']}/languages';
@@ -32,15 +33,25 @@ void onRepositoriesLoaded(String response) {
       .then((HttpClientResponse response) {
         final contents = new StringBuffer();
         response.transform(UTF8.decoder).listen((String data) => contents.write(data),
-            onDone: () => onLanguageDataLoaded(contents.toString()));
+            onDone: () => onLanguageDataLoaded(contents.toString(), languages));
         httpClient.close();
       });
 
   });
 }
 
-void onLanguageDataLoaded(String response) {
+void onLanguageDataLoaded(String response, Map languages) {
   final data = JSON.decode(response);
-  data.keys.forEach((k) => print('$k: ${data[k]}'));
+  data.forEach((k, v) {
+    if (languages[k] == null) languages[k] = 0;
+    languages[k] += v;
+  });
+  writeResultsToFile(languages);
+}
+
+void writeResultsToFile(Map languages) {
+  File file = new File('languages').openWrite();
+  languages.forEach((k, v) => file.write('$k $v\n'));
+  file.close();
 }
 
