@@ -7,3 +7,97 @@ body {
   margin: 2em;
 }
 
+/* WORLD COMPONENT */
+
+world-map svg {
+  margin: 10px 8px 16px !important;
+  width: 100% !important;
+
+}
+
+world-map .land {
+  fill: #CCC !important;
+  fill-opacity: 1 !important;
+  stroke: #fff !important;
+  stroke-opacity: 1 !important;
+  stroke-width: 0.5 !important;
+}
+
+world-map .visited {
+  fill: green !important;
+}
+
+world-map .visited:hover {
+  fill: #844b99 !important;
+}
+
+world-map text {
+  fill: #844b99 !important;
+  font-size: 20px !important;
+}
+
+world-map div {
+  color: green !important;
+  text-align: center !important;
+  padding: 0 16px 12px !important;
+  width: 100% !important;
+}
+
+/* LANGUAGES COMPONENT */
+
+my-languages .wrapper {
+  padding: 24px !important;
+}
+
+my-languages .wrapper .language {
+  color: green !important;
+  display: inline-block !important;
+  text-align: center !important;
+  padding: 0 16px 12px !important;
+}
+
+my-languages .wrapper .language.xs .name {
+  font-size: 12px !important;
+}
+
+my-languages .wrapper .language.xs img {
+  width: 40px !important;
+  max-height: 40px !important;
+}
+
+my-languages .wrapper .language.s .name {
+  font-size: 18px !important;
+}
+
+my-languages .wrapper .language.s img {
+  width: 80px !important;
+  max-height: 80px !important;
+}
+
+my-languages .wrapper .language.m .name {
+  font-size: 24px !important;
+}
+
+my-languages .wrapper .language.m img {
+  width: 120px !important;
+  max-height: 120px !important;
+}
+
+my-languages .wrapper .language.l .name {
+  font-size: 30px !important;
+}
+
+my-languages .wrapper .language.l img {
+  width: 160px !important;
+  max-height: 160px !important;
+}
+
+my-languages .wrapper .language.xl .name {
+  font-size: 36px !important;
+}
+
+my-languages .wrapper .language.xl img {
+  width: 200px !important;
+  max-height: 200px !important;
+}
+
