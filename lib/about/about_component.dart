@@ -61,5 +61,18 @@ class AboutComponent implements OnActivate {
         'Computer Science',
         'Algorithms, Data Analytics and Machine Learning')
   ];
+
+  Map<String, String> logos = {
+    'JavaScript': 'javascript.svg',
+    'CSS': 'css.svg',
+    'Java': 'java.svg',
+    'HTML': 'html.svg',
+    'Ruby': 'ruby.svg',
+    'Clojure': 'clojure.svg',
+    'Python': 'python.svg',
+    'C': 'c.png',
+    'Dart': 'dart.svg',
+    'Scala': 'scala.svg'
+  };
 }
 

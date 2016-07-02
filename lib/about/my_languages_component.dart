@@ -9,18 +9,9 @@ import 'package:angular2/router.dart';
     templateUrl: 'my_languages_component.html',
     styleUrls: const ['my_languages_component.css'])
 class MyLanguagesComponent implements OnInit {
-  Map<String, String> _logos = {
-    'JavaScript': 'javascript.svg',
-    'CSS': 'css.svg',
-    'Java': 'java.svg',
-    'HTML': 'html.svg',
-    'Ruby': 'ruby.svg',
-    'Clojure': 'clojure.svg',
-    'Python': 'python.svg',
-    'C': 'c.png',
-    'Dart': 'dart.svg',
-    'Scala': 'scala.svg'
-  };
+  @Input()
+  Map<String, String> logos;
+
   Map<String, String> _bytes;
   List<String> languages;
 
@@ -35,9 +26,9 @@ class MyLanguagesComponent implements OnInit {
 
   String bytes(String language) => (_bytes[language] / 1000).floor();
 
-  bool hasLogo(String language) => _logos[language] != null;
+  bool hasLogo(String language) => logos[language] != null;
 
-  String logoUrl(String language) => 'packages/kipsu_fi/assets/logos/${_logos[language]}';
+  String logoUrl(String language) => 'packages/kipsu_fi/assets/logos/${logos[language]}';
 
   ngOnInit() {
     final path = 'packages/kipsu_fi/cron/languages';
