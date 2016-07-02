@@ -1,1 +1,4 @@
-my languages
+<div *ngFor="let lang of languages" class="language" [ngClass]="classFor(lang)">
+  <div class="name">{{lang}}</div>
+  <div class="bytes">{{bytes[lang]}}B</div>
+</div>
