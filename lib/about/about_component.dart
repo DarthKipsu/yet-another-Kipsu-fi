@@ -4,6 +4,7 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:kipsu_fi/about/my_languages_component.dart';
+import 'package:kipsu_fi/about/school.dart';
 import 'package:kipsu_fi/about/world_component.dart';
 import 'package:kipsu_fi/services/title_service.dart';
 
@@ -37,5 +38,28 @@ class AboutComponent implements OnActivate {
   String getSrcFor(String link) {
     return '//$link';
   }
+
+  final List<School> schools = [
+    new School('Helsinki City College of Technology',
+        new DateTime(2007, 8, 27),
+        new DateTime(2009, 5, 29),
+        'Technical Drawing',
+        'Infrastructure planning'),
+    new School('Lahti University of Applied Sciences',
+        new DateTime(2012, 9, 3),
+        new DateTime(2015, 3, 16),
+        'Environmental Engineering',
+        'Urban planning'),
+    new School('Reactor academy',
+        new DateTime(2015, 3, 3),
+        new DateTime(2015, 6, 3),
+        'Information Technology and Software Services',
+        null),
+    new School('University of Helsinki',
+        new DateTime(2014, 9, 1),
+        null,
+        'Computer Science',
+        'Algorithms, Data Analytics and Machine Learning')
+  ];
 }
 

@@ -17,6 +17,13 @@
     <my-languages></my-languages>
   </div>
 
+  <h3>Timeline</h3>
+  <div class="card">
+    <div class="education" *ngFor="let school of schools">
+      {{school.name}}
+    </div>
+  </div>
+
   <h3>Contact information</h3>
   <div class="card">
     <table class="table table-condensed table-hover">
