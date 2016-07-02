@@ -1,32 +1,40 @@
-svg {
-  margin: 10px 8px 16px;
-  width: 100%;
+.wrapper {
+  padding: 24px;
 
-  .land {
-    fill: #CCC;
-    fill-opacity: 1;
-    stroke: #fff;
-    stroke-opacity: 1;
-    stroke-width: 0.5;
-  }
+  .language {
+    color: green;
+    display: inline-block;
+    text-align: center;
+    padding: 0 16px 12px;
 
-  .visited {
-    fill: green;
+    &.xs {
+      .name {
+        font-size: 12px;
+      }
+    }
 
-    &:hover {
-      fill: #844b99;
+    &.s {
+      .name {
+        font-size: 18px;
+      }
+    }
+
+    &.m {
+      .name {
+        font-size: 24px;
+      }
+    }
+
+    &.l {
+      .name {
+        font-size: 30px;
+      }
+    }
+
+    &.xl {
+      .name {
+        font-size: 36px;
+      }
     }
   }
-
-  text {
-    fill: #844b99;
-    font-size: 20px;
-  }
-}
-
-div {
-  color: green;
-  text-align: center;
-  padding: 0 16px 12px;
-  width: 100%;
 }
