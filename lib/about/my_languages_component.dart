@@ -53,10 +53,6 @@ class MyLanguagesComponent implements OnInit {
       _bytes = JSON.decode(httpRequest.responseText);
       languages = _bytes.keys.where((k) => _bytes[k] > 1000).toList();
       languages.sort((a, b) => _bytes[b].compareTo(_bytes[a]));
-      _bytes.forEach((k, v) {
-        print('$k: $v');
-      });
-      print(languages);
     }
   }
 }
