@@ -6,7 +6,9 @@
 .packages
 .pub
 build*
-lib/assets*
+lib/assets/about.jpg
+lib/assets/articles/*
+lib/assets/projects/*
 packages*
 pubspec.lock
 web/packages*
