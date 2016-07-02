@@ -1,7 +1,8 @@
 <div class="wrapper">
   <div *ngFor="let lang of languages" class="language" [ngClass]="classFor(lang)">
-    <div class="name">{{lang}}</div>
-    <div class="bytes">{{bytes[lang]}}B</div>
+    <div class="name" *ngIf="!hasLogo(lang)">{{lang}}</div>
+    <div class="logo" *ngIf="hasLogo(lang)"><img [src]="logoUrl(lang)" title="{{lang}}"/></div>
+    <div class="bytes">{{bytes(lang)}} kB</div>
   </div>
 </div>
 
