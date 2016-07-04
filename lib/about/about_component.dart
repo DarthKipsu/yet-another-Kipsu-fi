@@ -6,6 +6,7 @@ import 'package:angular2/router.dart';
 import 'package:kipsu_fi/about/country.dart';
 import 'package:kipsu_fi/about/my_languages_component.dart';
 import 'package:kipsu_fi/about/school.dart';
+import 'package:kipsu_fi/about/work.dart';
 import 'package:kipsu_fi/about/world_component.dart';
 import 'package:kipsu_fi/services/title_service.dart';
 
@@ -40,27 +41,62 @@ class AboutComponent implements OnActivate {
     return '//$link';
   }
 
-  final List<School> schools = [
-    new School('Helsinki City College of Technology',
-        new DateTime(2007, 8, 27),
-        new DateTime(2009, 5, 29),
-        'Technical Drawing',
-        'Infrastructure planning'),
-    new School('Lahti University of Applied Sciences',
-        new DateTime(2012, 9, 3),
+  final List<Work> work = [
+    new Work('Google',
+        new DateTime(2016, 5, 6),
+        new DateTime(2016, 8, 26),
+        'Software Engineering Intern'),
+    new Work('University of Helsinki',
+        new DateTime(2015, 9, 1),
+        new DateTime(2016, 5, 13),
+        'Teaching Assistant'),
+    new Work('Google',
+        new DateTime(2015, 7, 6),
+        new DateTime(2015, 9, 25),
+        'Software Engineering STEP Intern'),
+    new Work('Futurice',
+        new DateTime(2015, 5, 4),
+        new DateTime(2015, 6, 26),
+        'Software Developer'),
+    new Work('University of Helsinki',
+        new DateTime(2014, 9, 1),
+        new DateTime(2015, 5, 1),
+        'Programming Workshop Tutor'),
+    new Work('Sito',
         new DateTime(2015, 3, 16),
-        'Environmental Engineering',
-        'Urban planning'),
+        new DateTime(2015, 4, 30),
+        'Younger Designer'),
+    new Work('Sito',
+        new DateTime(2008, 2, 28),
+        new DateTime(2015, 3, 16),
+        'Planning Assistant'),
+    new Work('Arkkitehdit NRT',
+        new DateTime(2009, 3, 2),
+        new DateTime(2009, 5, 1),
+        'Planning Assistant Trainee')
+  ];
+
+  final List<School> schools = [
+    new School('University of Helsinki',
+        new DateTime(2014, 9, 1),
+        null,
+        'Computer Science',
+        'Algorithms, Data Analytics and Machine Learning'),
     new School('Reactor academy',
         new DateTime(2015, 3, 3),
         new DateTime(2015, 6, 3),
         'Information Technology and Software Services',
         null),
-    new School('University of Helsinki',
-        new DateTime(2014, 9, 1),
-        null,
-        'Computer Science',
-        'Algorithms, Data Analytics and Machine Learning')
+    new School('Lahti University of Applied Sciences',
+        new DateTime(2012, 9, 3),
+        new DateTime(2015, 3, 16),
+        'Environmental Engineering',
+        'Urban planning'),
+    new School('Helsinki City College of Technology',
+        new DateTime(2007, 8, 27),
+        new DateTime(2009, 5, 29),
+        'Technical Drawing',
+        'Infrastructure planning')
   ];
 
   final Map<String, String> logos = {
