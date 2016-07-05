@@ -19,7 +19,7 @@ class TimelineComponent implements OnInit {
   @Input()
   DateTime start;
 
-  static const height = 50;
+  static const height = 100;
 
   ngOnInit() {
     setTimeLineViewBox(200);
@@ -57,6 +57,6 @@ class TimelineComponent implements OnInit {
     return levelY(levels.length - 1);
   }
 
-  int levelY(int level) => (level * height * 1.5).floor();
+  int levelY(int level) => (level * height * 1.25).floor();
 }
 
