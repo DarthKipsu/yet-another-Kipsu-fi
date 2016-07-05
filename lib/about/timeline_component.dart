@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'package:angular2/core.dart';
@@ -22,10 +23,22 @@ class TimelineComponent implements OnInit {
   DateTime start;
 
   ngOnInit() {
-    final timeline = document.querySelector('.timeline');
-    if (timeline != null) timeline.attributes['viewBox'] = _svgViewBox;
+    setTimeLineViewBox();
+    new Timer(const Duration(milliseconds: 0), createSchoolRectangles);
   }
 
-  String get _svgViewBox => '0 0 ${new DateTime.now().difference(start).inDays} 500';
+  void setTimeLineViewBox() {
+    final svgViewBox = '0 0 ${new DateTime.now().difference(start).inDays} 500';
+    final timeline = document.querySelector('.timeline');
+    if (timeline != null) timeline.attributes['viewBox'] = svgViewBox;
+  }
+
+  void createSchoolRectangles() {
+    final rectangles = document.querySelectorAll('.education');
+    for (var i = 0; i < schools.length && i < rectangles.length; i++) {
+      rectangles[i].attributes['x'] = schools[i].xFrom(start);
+      rectangles[i].attributes['width'] = schools[i].width;
+    }
+  }
 }
 
