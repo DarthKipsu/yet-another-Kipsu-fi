@@ -35,22 +35,25 @@ class TimelineComponent implements OnInit {
   void createSchoolRectangles() {
     events.sort((a, b) => a.started.isBefore(b.started) ? -1 : 1);
     final rectangles = document.querySelectorAll('.event');
-    var currentY = 0;
+    var levels = new Map<int, DateTime>();
     for (var i = 0; i < events.length && i < rectangles.length; i++) {
-      currentY = getY(currentY, i, i - 1);
       rectangles[i].attributes['x'] = events[i].xFrom(start);
-      rectangles[i].attributes['y'] = currentY;
+      rectangles[i].attributes['y'] = getY(levels, events[i]);
       rectangles[i].attributes['width'] = events[i].width;
       rectangles[i].attributes['height'] = height;
       rectangles[i].classes.addAll(events[i].name.toLowerCase().split(' '));
     }
   }
 
-  int getY(currentY, int a, int b) {
-    if (b < 0) return currentY;
-    if (events[a].simultaneouslyWith(events[b])) return currentY + (height * 1.5).floor();
-    if (currentY > 0) return getY(currentY - (height * 1.5).floor(), a, b - 1);
-    return currentY;
+  int getY(levels, TimelineDisplayable event) {
+    for (var i = 0; i < levels.length; i++) {
+      if (levels[i].isBefore(event.started)) {
+        levels[i] = event.ended;
+        return (i * height * 1.5).floor();
+      }
+    }
+    levels[levels.length] = event.ended;
+    return ((levels.length - 1) * height * 1.5).floor();
   }
 }
 

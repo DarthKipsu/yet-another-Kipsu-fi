@@ -87,7 +87,7 @@ class AboutComponent implements OnActivate {
         'Urban planning'),
     new Work('Sito',
         new DateTime(2008, 2, 28),
-        new DateTime(2015, 3, 16),
+        new DateTime(2015, 3, 15),
         'Planning Assistant'),
     new Work('Arkkitehdit NRT',
         new DateTime(2009, 3, 2),
