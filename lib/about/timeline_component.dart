@@ -22,12 +22,12 @@ class TimelineComponent implements OnInit {
   static const height = 50;
 
   ngOnInit() {
-    setTimeLineViewBox();
+    setTimeLineViewBox(200);
     new Timer(const Duration(milliseconds: 0), createSchoolRectangles);
   }
 
-  void setTimeLineViewBox() {
-    final svgViewBox = '0 0 ${new DateTime.now().difference(start).inDays} 2000';
+  void setTimeLineViewBox(int height) {
+    final svgViewBox = '0 0 ${new DateTime.now().difference(start).inDays} $height';
     final timeline = document.querySelector('.timeline');
     if (timeline != null) timeline.attributes['viewBox'] = svgViewBox;
   }
@@ -41,19 +41,22 @@ class TimelineComponent implements OnInit {
       rectangles[i].attributes['y'] = getY(levels, events[i]);
       rectangles[i].attributes['width'] = events[i].width;
       rectangles[i].attributes['height'] = height;
-      rectangles[i].classes.addAll(events[i].name.toLowerCase().split(' '));
+      rectangles[i].classes.add(events[i].type);
     }
+    setTimeLineViewBox(levelY(levels.length));
   }
 
   int getY(levels, TimelineDisplayable event) {
     for (var i = 0; i < levels.length; i++) {
       if (levels[i].isBefore(event.started)) {
         levels[i] = event.ended;
-        return (i * height * 1.5).floor();
+        return levelY(i);
       }
     }
     levels[levels.length] = event.ended;
-    return ((levels.length - 1) * height * 1.5).floor();
+    return levelY(levels.length - 1);
   }
+
+  int levelY(int level) => (level * height * 1.5).floor();
 }
 
