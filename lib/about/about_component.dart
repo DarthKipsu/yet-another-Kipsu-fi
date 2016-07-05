@@ -6,6 +6,8 @@ import 'package:angular2/router.dart';
 import 'package:kipsu_fi/about/country.dart';
 import 'package:kipsu_fi/about/my_languages_component.dart';
 import 'package:kipsu_fi/about/school.dart';
+import 'package:kipsu_fi/about/timeline_component.dart';
+import 'package:kipsu_fi/about/timeline_displayable.dart';
 import 'package:kipsu_fi/about/work.dart';
 import 'package:kipsu_fi/about/world_component.dart';
 import 'package:kipsu_fi/services/title_service.dart';
@@ -14,7 +16,7 @@ import 'package:kipsu_fi/services/title_service.dart';
     selector: 'about-me',
     templateUrl: 'about_component.html',
     styleUrls: const ['about_component.css', '../content.css'],
-    directives: const [MyLanguagesComponent, WorldComponent])
+    directives: const [MyLanguagesComponent, TimelineComponent, WorldComponent])
 class AboutComponent implements OnActivate {
   final String coverPicUrl = '/packages/kipsu_fi/assets/about.jpg';
   final String name = 'Verna Koskinen';
@@ -41,7 +43,9 @@ class AboutComponent implements OnActivate {
     return '//$link';
   }
 
-  final List<Work> work = [
+  final DateTime timelineStart = new DateTime(2007, 8, 20);
+
+  final List<TimelineDisplayable> work = [
     new Work('Google',
         new DateTime(2016, 5, 6),
         new DateTime(2016, 8, 26),
@@ -76,7 +80,7 @@ class AboutComponent implements OnActivate {
         'Planning Assistant Trainee')
   ];
 
-  final List<School> schools = [
+  final List<TimelineDisplayable> schools = [
     new School('University of Helsinki',
         new DateTime(2014, 9, 1),
         null,

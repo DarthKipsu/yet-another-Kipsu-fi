@@ -19,12 +19,7 @@
 
   <h3>Timeline</h3>
   <div class="card">
-    <div class="work" *ngFor="let job of work">
-      {{job.name}}
-    </div>
-    <div class="education" *ngFor="let school of schools">
-      {{school.name}}
-    </div>
+    <timeline [workplaces]="work" [schools]="schools" [start]="timelineStart"></timeline>
   </div>
 
   <h3>Contact information</h3>

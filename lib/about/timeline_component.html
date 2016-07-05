@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="timeline">
+  <rect class="education" *ngFor="let school of schools"></rect>
+  <rect class="work" *ngFor="let work of workplaces"></rect>
+</svg>
+<div class="work" *ngFor="let job of workplaces" title="{{job.name}}" [style.width]="job.width">
+  {{job.name}} {{job.width}}
+</div>
+<div class="education" *ngFor="let school of schools" title="{{school.name}}" [style.width]="school.width">
+  {{school.name}} {{school.width}}
+</div>
