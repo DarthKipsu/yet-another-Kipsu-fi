@@ -42,10 +42,10 @@ class AboutComponent implements OnActivate {
   String getSrcFor(String link) {
     return '//$link';
   }
-
+  
   final DateTime timelineStart = new DateTime(2007, 8, 20);
 
-  final List<TimelineDisplayable> work = [
+  final List<TimelineDisplayable> timelineEvents = [
     new Work('Google',
         new DateTime(2016, 5, 6),
         new DateTime(2016, 8, 26),
@@ -62,14 +62,29 @@ class AboutComponent implements OnActivate {
         new DateTime(2015, 5, 4),
         new DateTime(2015, 6, 26),
         'Software Developer'),
+    new School('Reactor academy',
+        new DateTime(2015, 3, 3),
+        new DateTime(2015, 6, 3),
+        'Information Technology and Software Services',
+        null),
     new Work('University of Helsinki',
         new DateTime(2014, 9, 1),
         new DateTime(2015, 5, 1),
         'Programming Workshop Tutor'),
+    new School('University of Helsinki',
+        new DateTime(2014, 9, 1),
+        null,
+        'Computer Science',
+        'Algorithms, Data Analytics and Machine Learning'),
     new Work('Sito',
         new DateTime(2015, 3, 16),
         new DateTime(2015, 4, 30),
         'Younger Designer'),
+    new School('Lahti University of Applied Sciences',
+        new DateTime(2012, 9, 3),
+        new DateTime(2015, 3, 16),
+        'Environmental Engineering',
+        'Urban planning'),
     new Work('Sito',
         new DateTime(2008, 2, 28),
         new DateTime(2015, 3, 16),
@@ -77,25 +92,7 @@ class AboutComponent implements OnActivate {
     new Work('Arkkitehdit NRT',
         new DateTime(2009, 3, 2),
         new DateTime(2009, 5, 1),
-        'Planning Assistant Trainee')
-  ];
-
-  final List<TimelineDisplayable> schools = [
-    new School('University of Helsinki',
-        new DateTime(2014, 9, 1),
-        null,
-        'Computer Science',
-        'Algorithms, Data Analytics and Machine Learning'),
-    new School('Reactor academy',
-        new DateTime(2015, 3, 3),
-        new DateTime(2015, 6, 3),
-        'Information Technology and Software Services',
-        null),
-    new School('Lahti University of Applied Sciences',
-        new DateTime(2012, 9, 3),
-        new DateTime(2015, 3, 16),
-        'Environmental Engineering',
-        'Urban planning'),
+        'Planning Assistant Trainee'),
     new School('Helsinki City College of Technology',
         new DateTime(2007, 8, 27),
         new DateTime(2009, 5, 29),
