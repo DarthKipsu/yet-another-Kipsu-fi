@@ -1,8 +1,29 @@
+$study-color: #844b99;
+$study-hover-color: #A940CF;
+$work-color: #60994b;
+$work-hover-color: #5cb03e;
+
 .education {
-  fill: purple;
+  fill: $study-color;
+
+  &:hover {
+    fill: $study-hover-color;
+  }
+}
+
+.timeline {
+  margin: 16px 0;
 }
 
 .work {
-  fill: indigo;
+  fill: $work-color;
+
+  &:hover {
+    fill: $work-hover-color;
+  }
+}
+
+.wrapper {
+  min-height: 300px;
 }
 

@@ -43,7 +43,7 @@ class AboutComponent implements OnActivate {
     return '//$link';
   }
   
-  final DateTime timelineStart = new DateTime(2007, 8, 20);
+  final DateTime timelineStart = new DateTime(2007, 8, 27);
 
   final List<TimelineDisplayable> timelineEvents = [
     new Work('Google',
