@@ -6,9 +6,10 @@ class Work implements TimelineDisplayable {
   DateTime started;
   DateTime _ended;
   String position;
+  String id;
   Event type = Event.WORK;
 
-  Work(this.name, this.started, this._ended, this.position);
+  Work(this.name, this.started, this._ended, this.position, this.id);
 
   DateTime get ended => hasEnded ? _ended : new DateTime.now();
 
@@ -20,5 +21,7 @@ class Work implements TimelineDisplayable {
 
   bool simultaneouslyWith(TimelineDisplayable event) =>
     started.isBefore(event.ended) && ended.isAfter(event.started);
+
+  String render(DateTime date) => '${date.day}.${date.month}.${date.year}';
 }
 

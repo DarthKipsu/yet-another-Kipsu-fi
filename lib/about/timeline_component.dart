@@ -23,7 +23,7 @@ class TimelineComponent implements OnInit {
 
   ngOnInit() {
     setTimeLineViewBox(200);
-    new Timer(const Duration(milliseconds: 0), createSchoolRectangles);
+    new Timer(const Duration(milliseconds: 0), applyEventFunctionality);
   }
 
   void setTimeLineViewBox(int height) {
@@ -32,7 +32,7 @@ class TimelineComponent implements OnInit {
     if (timeline != null) timeline.attributes['viewBox'] = svgViewBox;
   }
 
-  void createSchoolRectangles() {
+  void applyEventFunctionality() {
     events.sort((a, b) => a.started.isBefore(b.started) ? -1 : 1);
     final rectangles = document.querySelectorAll('.event');
     var levels = new Map<int, DateTime>();
@@ -44,7 +44,19 @@ class TimelineComponent implements OnInit {
       rectangles[i].classes.add(events[i].type);
     }
     setTimeLineViewBox(levelY(levels.length));
+
+    events.forEach((event) {
+      final elements = document.querySelectorAll('.${event.id}');
+      if (elements.length == 2) {
+        elements[0].onMouseOver.listen(_tooltipDisplay(elements[1], true));
+        elements[0].onMouseLeave.listen(_tooltipDisplay(elements[1], false));
+      }
+    });
   }
+
+  dynamic _tooltipDisplay(Element tooltip, bool display) => (_) {
+    tooltip.style.display = display ? 'block' : 'none';
+  };
 
   int getY(levels, TimelineDisplayable event) {
     for (var i = 0; i < levels.length; i++) {

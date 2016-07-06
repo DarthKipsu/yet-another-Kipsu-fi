@@ -5,6 +5,7 @@ abstract class TimelineDisplayable {
   DateTime get ended;
   int get width;
   bool get hasEnded;
+  String get id;
   Event get type;
 
   int xFrom(DateTime timelineStart);

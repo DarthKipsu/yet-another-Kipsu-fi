@@ -7,9 +7,10 @@ class School implements TimelineDisplayable {
   DateTime _graduated;
   String field;
   String specialization;
+  String id;
   Event type = Event.EDUCATION;
 
-  School(this.name, this.started, this._graduated, this.field, this.specialization);
+  School(this.name, this.started, this._graduated, this.field, this.specialization, this.id);
 
   DateTime get ended => hasEnded ? _graduated : new DateTime.now();
 
@@ -21,5 +22,7 @@ class School implements TimelineDisplayable {
 
   bool simultaneouslyWith(TimelineDisplayable event) =>
     started.isBefore(event.ended) && ended.isAfter(event.started);
+
+  String render(DateTime date) => '${date.day}.${date.month}.${date.year}';
 }
 
