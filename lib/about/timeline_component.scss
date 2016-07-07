@@ -1,13 +1,26 @@
 $study-color: #844b99;
-$study-hover-color: #A940CF;
+$study-font-color: #682580;
 $work-color: #60994b;
-$work-hover-color: #5cb03e;
+$work-font-color: #3d8025;
 
 .education {
+  color: $study-font-color;
   fill: $study-color;
+}
 
-  &:hover {
-    fill: $study-hover-color;
+.info {
+  padding: 16px;
+  position: relative;
+  
+  .name {
+    font-size: 18px;
+  }
+  
+  .tt {
+    left: 0;
+    padding: 16px;
+    position: absolute;
+    top: 0;
   }
 }
 
@@ -20,14 +33,15 @@ $work-hover-color: #5cb03e;
 }
 
 .work {
+  color: $work-font-color;
   fill: $work-color;
-
-  &:hover {
-    fill: $work-hover-color;
-  }
 }
 
 .wrapper {
-  min-height: 300px;
+  min-height: 250px;
+}
+
+.faded {
+  opacity: 0.75;
 }
 

@@ -1,28 +1,30 @@
 <div class="wrapper">
   <svg xmlns="http://www.w3.org/2000/svg" class="timeline">
-    <rect class="event" *ngFor="let event of events" [ngClass]="event.id"></rect>
+    <rect class="event" *ngFor="let event of events"></rect>
   </svg>
 
-  <div *ngFor="let event of events" class="info">
-    <div *ngIf="event.type == 'education'" class="tt" [ngClass]="event.id">
-      <div class="name">{{event.name}}</div>
-      <div class="field">
-        {{event.field}}<span *ngIf="event.specialization != null">, specialized in
-        {{event.specialization}}</span>
+  <div class="info">
+    <div *ngFor="let event of events" [ngClass]="event.type">
+      <div *ngIf="event.type == 'education'" class="tt" [ngClass]="event.id">
+        <div class="name">{{event.name}}</div>
+        <div class="field">
+          {{event.field}}<span *ngIf="event.specialization != null">, specialized in
+            {{event.specialization}}</span>
+        </div>
+        <div class="dates">
+          {{event.render(event.started)}}
+          <span *ngIf="event.hasEnded">- {{event.render(event.ended)}}</span>
+          <span *ngIf="!event.hasEnded">(currently studying here)</span>
+        </div>
       </div>
-      <div class="dates">
-        {{event.render(event.started)}}
-        <span *ngIf="event.hasEnded">- {{event.render(event.ended)}}</span>
-        <span *ngIf="!event.hasEnded">(currently studying here)</span>
-      </div>
-    </div>
-    <div *ngIf="event.type == 'work'" class="tt" [ngClass]="event.id">
-      <div class="name">{{event.name}}</div>
-      <div class="position">{{event.position}}</div>
-      <div class="dates">
-        {{event.render(event.started)}}
-        <span *ngIf="event.hasEnded">- {{event.render(event.ended)}}</span>
-        <span *ngIf="!event.hasEnded">(current job)</span>
+      <div *ngIf="event.type == 'work'" class="tt" [ngClass]="event.id">
+        <div class="name">{{event.name}}</div>
+        <div class="position">{{event.position}}</div>
+        <div class="dates">
+          {{event.render(event.started)}}
+          <span *ngIf="event.hasEnded">- {{event.render(event.ended)}}</span>
+          <span *ngIf="!event.hasEnded">(current job)</span>
+        </div>
       </div>
     </div>
   </div>

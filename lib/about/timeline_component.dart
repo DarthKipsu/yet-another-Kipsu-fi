@@ -41,20 +41,27 @@ class TimelineComponent implements OnInit {
       rectangles[i].attributes['y'] = getY(levels, events[i]);
       rectangles[i].attributes['width'] = events[i].width;
       rectangles[i].attributes['height'] = height;
-      rectangles[i].classes.add(events[i].type);
+      rectangles[i].classes.addAll([events[i].type, events[i].id]);
     }
     setTimeLineViewBox(levelY(levels.length));
 
     events.forEach((event) {
       final elements = document.querySelectorAll('.${event.id}');
       if (elements.length == 2) {
-        elements[0].onMouseOver.listen(_tooltipDisplay(elements[1], true));
-        elements[0].onMouseLeave.listen(_tooltipDisplay(elements[1], false));
+        elements[0].onMouseOver.listen(_tooltipDisplay(elements[0], elements[1], true));
+        elements[0].onMouseLeave.listen(_tooltipDisplay(elements[0], elements[1], false));
       }
     });
   }
 
-  dynamic _tooltipDisplay(Element tooltip, bool display) => (_) {
+  dynamic _tooltipDisplay(Element rect, Element tooltip, bool display) => (_) {
+    final elements = document.querySelectorAll('.event');
+    if (display) {
+      elements.forEach((e) => e.classes.add('faded'));
+      rect.classes.remove('faded');
+    } else {
+      elements.forEach((e) => e.classes.remove('faded'));
+    }
     tooltip.style.display = display ? 'block' : 'none';
   };
 
