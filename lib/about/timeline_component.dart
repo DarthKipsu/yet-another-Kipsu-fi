@@ -52,7 +52,13 @@ class TimelineComponent implements OnInit {
       rectangles[i].attributes['height'] = height;
       rectangles[i].classes.addAll([events[i].type, events[i].id]);
     }
-    setTimeLineViewBox(levelY(levels.length));
+    final yearElements = document.querySelectorAll('.year-marker');
+    for (var i = 0; i < yearElements.length && i < years.length; i++) {
+      yearElements[i].attributes['x'] = xFor(new DateTime(years[i], 1, 1));
+      yearElements[i].attributes['y'] = levelY(levels.length + 0.5);
+      yearElements[i].attributes['font-size'] = height / 2;
+    }
+    setTimeLineViewBox(levelY(levels.length + 1.5));
 
     events.forEach((event) {
       final elements = document.querySelectorAll('.${event.id}');

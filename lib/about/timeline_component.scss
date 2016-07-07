@@ -1,5 +1,6 @@
 $study-color: #844b99;
 $study-font-color: #682580;
+$year-color: #666;
 $work-color: #60994b;
 $work-font-color: #3d8025;
 
@@ -20,12 +21,16 @@ $work-font-color: #3d8025;
     left: 0;
     padding: 16px;
     position: absolute;
-    top: 0;
+    top: -30px;
   }
 }
 
 .timeline {
   margin: 16px 0 0;
+
+  text {
+    fill: $year-color;
+  }
 }
 
 .work {
@@ -34,7 +39,7 @@ $work-font-color: #3d8025;
 }
 
 .wrapper {
-  min-height: 250px;
+  min-height: 260px;
 }
 
 .faded {

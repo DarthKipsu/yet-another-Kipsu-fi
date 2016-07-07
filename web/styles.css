@@ -121,11 +121,15 @@ timeline .info .tt {
   left: 0 !important;
   padding: 16px !important;
   position: absolute !important;
-  top: 0 !important;
+  top: -30px !important;
 }
 
 timeline .timeline {
   margin: 16px 0 0 !important;
+}
+
+timeline .timeline text {
+  fill: #666 !important;
 }
 
 timeline .work {
@@ -134,7 +138,7 @@ timeline .work {
 }
 
 timeline .wrapper {
-  min-height: 250px !important;
+  min-height: 260px !important;
 }
 
 timeline .faded {
