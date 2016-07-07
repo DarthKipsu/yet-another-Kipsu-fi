@@ -1,6 +1,7 @@
 <div class="wrapper">
   <svg xmlns="http://www.w3.org/2000/svg" class="timeline">
     <rect class="event" *ngFor="let event of events"></rect>
+    <text class="year-marker" *ngFor="let year of years">{{year}}</text>
   </svg>
 
   <div class="info">

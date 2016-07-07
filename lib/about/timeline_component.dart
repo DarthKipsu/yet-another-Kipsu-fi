@@ -21,6 +21,15 @@ class TimelineComponent implements OnInit {
 
   static const height = 100;
 
+  List<int> get years {
+    final duration = (new DateTime.now().difference(start).inDays / 365).ceil();
+    final listOfYears = new List<int>();
+    for (var i = 1; i <= duration; i++) {
+      listOfYears.add(start.year + i);
+    }
+    return listOfYears;
+  }
+
   ngOnInit() {
     setTimeLineViewBox(200);
     new Timer(const Duration(milliseconds: 0), applyEventFunctionality);
@@ -77,5 +86,7 @@ class TimelineComponent implements OnInit {
   }
 
   int levelY(int level) => (level * height * 1.25).floor();
+
+  int xFor(DateTime date) => date.difference(start).inDays;
 }
 
