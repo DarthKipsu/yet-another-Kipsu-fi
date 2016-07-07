@@ -101,3 +101,43 @@ my-languages .wrapper .language.xl img {
   max-height: 200px !important;
 }
 
+/* TIMELINE COMPONENT */
+
+timeline .education {
+  color: #682580 !important;
+  fill: #844b99 !important;
+}
+
+timeline .info {
+  padding: 16px !important;
+  position: relative !important;
+}
+
+timeline .info .name {
+  font-size: 18px !important;
+}
+
+timeline .info .tt {
+  left: 0 !important;
+  padding: 16px !important;
+  position: absolute !important;
+  top: 0 !important;
+}
+
+timeline .timeline {
+  margin: 16px 0 0 !important;
+}
+
+timeline .work {
+  color: #3d8025 !important;
+  fill: #60994b !important;
+}
+
+timeline .wrapper {
+  min-height: 250px !important;
+}
+
+timeline .faded {
+  opacity: 0.75 !important;
+}
+

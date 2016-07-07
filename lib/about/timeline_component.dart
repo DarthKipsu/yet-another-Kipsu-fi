@@ -60,6 +60,7 @@ class TimelineComponent implements OnInit {
         elements[0].onMouseOver.listen(_tooltipDisplay(elements[0], elements[1], true));
         elements[0].onMouseLeave.listen(_tooltipDisplay(elements[0], elements[1], false));
       }
+      elements[1].style.display = 'none';
     });
   }
 
