@@ -52,11 +52,17 @@ class TimelineComponent implements OnInit {
       rectangles[i].attributes['height'] = height;
       rectangles[i].classes.addAll([events[i].type, events[i].id]);
     }
-    final yearElements = document.querySelectorAll('.year-marker');
-    for (var i = 0; i < yearElements.length && i < years.length; i++) {
-      yearElements[i].attributes['x'] = xFor(new DateTime(years[i], 1, 1));
-      yearElements[i].attributes['y'] = levelY(levels.length + 0.5);
-      yearElements[i].attributes['font-size'] = height / 2;
+    final yearLegends = document.querySelectorAll('.year-legend');
+    final yearLines = document.querySelectorAll('.year-marker');
+    for (var i = 0; i < yearLegends.length && i < years.length; i++) {
+      yearLegends[i].attributes['x'] = xFor(new DateTime(years[i], 1, 1)) - height / 2;
+      yearLegends[i].attributes['y'] = levelY(levels.length + 0.5);
+      yearLegends[i].attributes['font-size'] = height / 2;
+
+      yearLines[i].attributes['x'] = xFor(new DateTime(years[i], 1, 1));
+      yearLines[i].attributes['y'] = 0;
+      yearLines[i].attributes['width'] = 1;
+      yearLines[i].attributes['height'] = levelY(levels.length);
     }
     setTimeLineViewBox(levelY(levels.length + 1.5));
 
@@ -73,10 +79,9 @@ class TimelineComponent implements OnInit {
   dynamic _tooltipDisplay(Element rect, Element tooltip, bool display) => (_) {
     final elements = document.querySelectorAll('.event');
     if (display) {
-      elements.forEach((e) => e.classes.add('faded'));
       rect.classes.remove('faded');
     } else {
-      elements.forEach((e) => e.classes.remove('faded'));
+      rect.classes.add('faded');
     }
     tooltip.style.display = display ? 'block' : 'none';
   };
