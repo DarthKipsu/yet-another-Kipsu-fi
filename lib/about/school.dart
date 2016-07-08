@@ -1,13 +1,14 @@
 import 'package:kipsu_fi/about/event.dart';
 import 'package:kipsu_fi/about/timeline_displayable.dart';
 
-class School implements TimelineDisplayable {
+class School extends TimelineDisplayable {
   String name;
   DateTime started;
   DateTime _graduated;
   String field;
   String specialization;
   String id;
+
   Event type = Event.EDUCATION;
 
   School(this.name, this.started, this._graduated, this.field, this.specialization, this.id);
@@ -15,14 +16,5 @@ class School implements TimelineDisplayable {
   DateTime get ended => hasEnded ? _graduated : new DateTime.now();
 
   bool get hasEnded => _graduated != null;
-
-  int get width => ended.difference(started).inDays;
-
-  int xFrom(DateTime timelineStart) => started.difference(timelineStart).inDays;
-
-  bool simultaneouslyWith(TimelineDisplayable event) =>
-    started.isBefore(event.ended) && ended.isAfter(event.started);
-
-  String render(DateTime date) => '${date.day}.${date.month}.${date.year}';
 }
 
