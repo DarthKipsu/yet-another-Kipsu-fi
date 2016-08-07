@@ -155,7 +155,9 @@ class AboutComponent implements OnActivate {
     new Country("CH", "Switzerland", [
         { "arrived": new DateTime(2016, 5, 14), "left": new DateTime(2016, 6, 4) },
         { "arrived": new DateTime(2016, 6, 5), "left": new DateTime(2016, 6, 25) },
-        { "arrived": new DateTime(2016, 6, 26), "left": new DateTime.now() }
+        { "arrived": new DateTime(2016, 6, 26), "left": new DateTime(2016, 7, 16) },
+        { "arrived": new DateTime(2016, 7, 17), "left": new DateTime(2016, 7, 29) },
+        { "arrived": new DateTime(2016, 8, 1), "left": new DateTime.now() }
     ]),
     new Country("NO", "Norway", [
         { "arrived": new DateTime(2010, 7, 20), "left": new DateTime(2010, 7, 26) }
@@ -189,7 +191,8 @@ class AboutComponent implements OnActivate {
         { "arrived": new DateTime(2011, 7, 23), "left": new DateTime(2011, 7, 30) }
     ]),
     new Country("IT", "Italy", [
-        { "arrived": new DateTime(2012, 4, 9), "left": new DateTime(2012, 4, 13) }
+        { "arrived": new DateTime(2012, 4, 9), "left": new DateTime(2012, 4, 13) },
+        { "arrived": new DateTime(2016, 7, 16), "left": new DateTime(2016, 7, 17) }
     ]),
     new Country("ES", "Spain", [
         { "arrived": new DateTime(2011, 1, 16), "left": new DateTime(2011, 1, 23) }
@@ -198,7 +201,8 @@ class AboutComponent implements OnActivate {
         { "arrived": new DateTime(2016, 6, 4), "left": new DateTime(2016, 6, 5) }
     ]),
     new Country("FR", "France", [
-        { "arrived": new DateTime(2016, 6, 25), "left": new DateTime(2016, 6, 26) }
+        { "arrived": new DateTime(2016, 6, 25), "left": new DateTime(2016, 6, 26) },
+        { "arrived": new DateTime(2016, 7, 29), "left": new DateTime(2016, 8, 1) }
     ])
   ];
 
