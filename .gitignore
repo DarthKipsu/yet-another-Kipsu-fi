@@ -12,3 +12,4 @@ lib/assets/projects/*
 packages*
 pubspec.lock
 web/packages*
+papers/*
